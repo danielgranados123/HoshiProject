@@ -26,4 +26,4 @@ const brandSchema =  new Schema({
     strict: false
 });
 
-export default model("Brand", brandSchema);
+export default model("Brands", brandSchema);

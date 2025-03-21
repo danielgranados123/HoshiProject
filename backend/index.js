@@ -1,6 +1,7 @@
 // Importo el archivo app.js
 import app from './app.js';
 import "./database.js";
+
 import dotenv from "dotenv";
 
 dotenv.config();

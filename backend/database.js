@@ -9,7 +9,7 @@ import { config } from "./src/config.js"
 // const URI = 
 
 // 2- Conecto la base de datos
-mongoose.connect(config.dn.URI);
+mongoose.connect(config.db.URI);
 
 // Comprobar todo
 // 3- Creo una constante que es igual a la conexión

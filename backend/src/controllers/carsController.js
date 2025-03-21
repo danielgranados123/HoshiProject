@@ -9,7 +9,7 @@ carsController.getCars = async (req, res) => {
 };
 
 // INSERT
-carsController.createBrands = async (req, res) => {
+carsController.createCars = async (req, res) => {
     const { price, mileage, color, description, photos, airConditioning, radio, camera, screen, idBranch, idModel} = req.body;
     const newCar = new brandsModel({ price, mileage, color, description, photos, airConditioning, radio, camera, screen, idBranch, idModel });
     await newCar.save()
@@ -17,13 +17,13 @@ carsController.createBrands = async (req, res) => {
 };
 
 // DELETE
-carsController.deleteBrands = async (req, res) => {
+carsController.deleteCars = async (req, res) => {
     await brandsModel.findOneAndDelete(req.params.id)
     res.json({ message: "Car deleted"})
 };
 
 // UPDATE
-carsController.updateBrands = async (req, res) => {
+carsController.updateCars = async (req, res) => {
     const { price, mileage, color, description, photos, airConditioning, radio, camera, screen, idBranch, idModel } = req.body;
     await brandsModel.findByIdAndUpdate(req.params.id, {
         price, 
@@ -43,4 +43,4 @@ carsController.updateBrands = async (req, res) => {
     res.json({ message: "Car updated"})
 };
 
-export default brandsController;
+export default carsController;

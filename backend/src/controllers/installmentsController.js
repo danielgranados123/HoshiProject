@@ -3,13 +3,13 @@ const installmentsController = {};
 import installmentsModel from "../models/Installments.js"
 
 // SELECT
-installmentsController.getCustomers = async (req, res) => {
+installmentsController.getInstallments = async (req, res) => {
     const installments = await installmentsModel.find()
     res.json(installments)
 };
 
 // INSERT
-installmentsController.createCustomers = async (req, res) => {
+installmentsController.createInstallments = async (req, res) => {
     const { number, installmentAmount, paymentMethod, status, paymentDate } = req.body;
     const newInstallments = new installmentsModel({ number, installmentAmount, paymentMethod, status, paymentDate });
     await newInstallments.save()
@@ -17,13 +17,13 @@ installmentsController.createCustomers = async (req, res) => {
 };
 
 // DELETE
-installmentsController.deleteCustomers = async (req, res) => {
+installmentsController.deleteInstallments = async (req, res) => {
     await installmentsModel.findOneAndDelete(req.params.id)
     res.json({ message: "Installment deleted"})
 };
 
 // UPDATE
-installmentsController.updateCustomers = async (req, res) => {
+installmentsController.updateInstallments = async (req, res) => {
     const { number, installmentAmount, paymentMethod, status, paymentDate } = req.body;
     await installmentsModel.findByIdAndUpdate(req.params.id, {
         number, 

@@ -19,22 +19,11 @@ const employeesSchema =  new Schema({
     },
     email: {
         type: String ,
-        require: true,
-        match:[
-           /^[0-9]+@[^\s@]+\.[^\s@]+$/,
-           "El correo debe ser valido"
-            
-        ]
-       
+        require: true       
     },
     phone: {
         type: String,
-        require: true,
-        match:[
-            
-            /^[^\s@]+{8}+$/,
-            "El numero debe tener 8 digitos"
-        ]
+        require: true
     },
     role: {
         type: String,

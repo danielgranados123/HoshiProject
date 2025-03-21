@@ -1,42 +1,36 @@
 // Array de métodos (CRUD)
-const employeesController = {};
-import employeesModel from "../models/Employees.js"
+const paymentController = {};
+import paymentModel from "../models/Payment.js"
 
 // SELECT
-employeesController.getEmployees = async (req, res) => {
-    const customers = await employeesModel.find()
+paymentController.getPayment = async (req, res) => {
+    const customers = await paymentModel.find()
     res.json(customers)
 };
 
 // INSERT
-employeesController.createCustomers = async (req, res) => {
+paymentController.createPayment = async (req, res) => {
     const { paymentMethod, status } = req.body;
-    const newCustomer = new employeesModel({ paymentMethod, status });
-    await newCustomer.save()
-    res.json({ message: "Employees saved"})
+    const newPayment = new paymentModel({ paymentMethod, status });
+    await newPayment.save()
+    res.json({ message: "Payment saved"})
 };
 
 // DELETE
-employeesController.deleteEmployees = async (req, res) => {
-    await employeesModel.findOneAndDelete(req.params.id)
-    res.json({ message: "Employees deleted"})
+paymentController.deletePayment = async (req, res) => {
+    await paymentModel.findOneAndDelete(req.params.id)
+    res.json({ message: "Payment deleted"})
 };
 
 // UPDATE
-employeesController.updateEmployees = async (req, res) => {
-    const { name, lastName, email, phone, role, salary } = req.body;
-    await employeesModel.findByIdAndUpdate(req.params.id, {
-        name, 
-        lastName, 
-        email, 
-        phone, 
-        role, 
-        salary,
-        IdBranch
+paymentController.updatePayment = async (req, res) => {
+    const { paymentMethod, status } = req.body;
+    await paymentModel.findByIdAndUpdate(req.params.id, {
+        paymentMethod, status
     }, {new: true}
     );
 
-    res.json({ message: "Employees updated"})
+    res.json({ message: "Payment updated"})
 };
 
-export default employeesController;
+export default paymentController;

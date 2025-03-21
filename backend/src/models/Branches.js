@@ -18,12 +18,7 @@ const branchesSchema =  new Schema({
     },
     phone: {
         type:  String,
-        require: true,
-        match:[
-            
-            /^[^\s@]+{8}+$/,
-            "El numero debe tener 8 digitos"
-        ]
+        require: true
     },
 }, {
     timestamps: true,

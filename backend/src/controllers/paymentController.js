@@ -1,6 +1,6 @@
 // Array de métodos (CRUD)
 const paymentController = {};
-import paymentModel from "../models/Payment.js"
+import paymentModel from "../models/Payments.js"
 
 // SELECT
 paymentController.getPayment = async (req, res) => {

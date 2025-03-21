@@ -8,7 +8,10 @@ import customersRoutes from "./src/routes/customers.js"
 import employeesRoutes from "./src/routes/employees.js"
 import installmentsRoutes from "./src/routes/installments.js"
 import modelsRoutes from "./src/routes/models.js"
-//import paymentsRoutes from "./src/routes/payments.js"
+import paymentsRoutes from "./src/routes/payments.js"
+import ordersRoutes from "./src/routes/orders.js"
+import reviewsRoutes from "./src/routes/reviews.js"
+//import chatsRoutes from "./src/routes/chats.js"
 
 
 // Creo una constante que es igual a la liberia que importé
@@ -26,7 +29,10 @@ app.use("/api/customers", customersRoutes)
 app.use("/api/employees", employeesRoutes)
 app.use("/api/installments", installmentsRoutes)
 app.use("/api/models", modelsRoutes)
-//app.use("/api/payments", paymentsRoutes)
+app.use("/api/payments", paymentsRoutes)
+app.use("/api/orders", ordersRoutes)
+app.use("/api/reviews", reviewsRoutes)
+//app.use("/api/chats", chatsRoutes)
 
 
 // Exporto la constante para poder usar express en otros archivos

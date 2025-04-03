@@ -1,0 +1,56 @@
+/* Navigation css */
+ 
+.nav-container {
+    background-color: #1E40AF;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+  }
+   
+  .nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+   
+  .nav-logo {
+    display: flex;
+    align-items: center;
+  }
+   
+  .logo-img {
+    height: 40px;
+    margin-right: 10px;
+  }
+   
+  .nav-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+   
+  .nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    align-items: center;
+  }
+   
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s;
+  }
+   
+  .nav-link:hover {
+    color: #93C5FD;
+  }
+   
+  .nav-icon {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+  }

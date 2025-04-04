@@ -1,24 +1,20 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import Home from './pages/Home'
-import About from './pages/About'
-import Contact from './pages/Contact'
-import Catalog from './pages/Catalog'
-import Account from './pages/Account'
+import Home from './pages/Home.jsx'
+import About from './pages/About.jsx'
+import Contact from './pages/Contact.jsx'
+import Catalog from './pages/Catalog.jsx'
+import Account from './pages/Account.jsx'
 
 import {BrowserRouter as Router, Routes, Route} 
 from 'react-router'
+
 import Nav from './components/Navigation/Nav'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
       <Router>
-|       <Nav/>
+       <Nav/>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />

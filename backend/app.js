@@ -11,7 +11,8 @@ import paymentsRoutes from "./src/routes/payments.js"
 import ordersRoutes from "./src/routes/orders.js"
 import reviewsRoutes from "./src/routes/reviews.js"
 import chatsRoutes from "./src/routes/chats.js"
-
+import loginRoutes from "./src/routes/login.js"
+import logoutRoutes from "./src/routes/logout.js"
 
 // Creo una constante que es igual a la liberia que importé
 const app = express();
@@ -31,6 +32,9 @@ app.use("/api/payments", paymentsRoutes)
 app.use("/api/orders", ordersRoutes)
 app.use("/api/reviews", reviewsRoutes)
 app.use("/api/chats", chatsRoutes)
+app.use("/api/login", loginRoutes)
+app.use("/api/logout", logoutRoutes)
+
 
 
 // Exporto la constante para poder usar express en otros archivos

@@ -4,11 +4,13 @@ import About from './pages/About.jsx'
 import Contact from './pages/Contact.jsx'
 import Catalog from './pages/Catalog.jsx'
 import Account from './pages/Account.jsx'
+import Terms from './pages/Terms/Terms.jsx'
 
 import {BrowserRouter as Router, Routes, Route} 
 from 'react-router'
 
 import Nav from './components/Navigation/Nav'
+import Footer from './components/Footer/Footer.jsx'
 
 function App() {
   return (
@@ -21,10 +23,13 @@ function App() {
             <Route path='/contact' element={<Contact />} />
             <Route path="/catalog" element={<Catalog />} />
             <Route path='/account' element={<Account />} />
+            <Route path='/terms' element={<Terms />} />
             </Routes>
-      </Router>
 
+            <Footer/>
+      </Router>
       <br />
+      
     </>
   )
 }

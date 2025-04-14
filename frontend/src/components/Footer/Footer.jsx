@@ -37,7 +37,7 @@ const Footer = () => {
                 <div class="form-container">
                 <input type="text" className="input-field" placeholder="Escribe algo..." />
                 <button class="submit-button">
-                <IoMdSend className="social-icon-2" /> Empezar chat
+                    Empezar chat<IoMdSend className="social-icon-2" /> 
                 </button>
             </div>
             </div>

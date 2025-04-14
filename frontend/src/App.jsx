@@ -1,9 +1,9 @@
 import './App.css'
-import Home from './pages/Home.jsx'
-import About from './pages/About.jsx'
+import Home from './pages/Home/Home.jsx'
+import About from './pages/About/About.jsx'
 import Contact from './pages/Contact.jsx'
-import Catalog from './pages/Catalog.jsx'
-import Account from './pages/Account.jsx'
+import Catalog from './pages/Catalog/Catalog.jsx'
+import Account from './pages/Account/Account.jsx'
 import Terms from './pages/Terms/Terms.jsx'
 
 import {BrowserRouter as Router, Routes, Route} 
@@ -24,9 +24,8 @@ function App() {
             <Route path="/catalog" element={<Catalog />} />
             <Route path='/account' element={<Account />} />
             <Route path='/terms' element={<Terms />} />
-            </Routes>
-
-            <Footer/>
+          </Routes>
+        <Footer/>
       </Router>
       <br />
       

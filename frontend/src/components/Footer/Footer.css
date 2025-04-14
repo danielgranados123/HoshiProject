@@ -135,14 +135,14 @@ body {
 .submit-button {
     font-family: 'Poppins', sans-serif;
     position: absolute;
-    right: 5px;
+    right: 0.8vh;
     top: 65%;
-    width: 60%;
+    width: 65%;
     background-color: #D50000;
     color: #fdfdfd;
     border: none;
     border-radius: 20px;
-    padding: 10px 10px;
+    padding: 0.6vh 0.5vh 0.6vh 2vh;
     font-weight: 600;
     display: flex;
     align-items: center;
@@ -151,7 +151,7 @@ body {
 }
 
 .send-icon {
-    margin-right: 8px;
+    margin-left: 8px;
     font-size: 18px;
 }
 

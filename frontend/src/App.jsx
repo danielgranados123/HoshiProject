@@ -22,7 +22,7 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false)
-    }, 1300) // Duración del splash screen en milisegundos
+    }, 1100) // Duración del splash screen en milisegundos
     return () => clearTimeout(timer)
   }, [])
 

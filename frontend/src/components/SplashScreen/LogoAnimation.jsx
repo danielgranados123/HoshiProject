@@ -1,23 +1,38 @@
-import React, { useEffect } from 'react';
-import Lottie from 'lottie-react';
-import animationData from '../../assets/logo_animation.json';
-import './LogoAnimation.css'
+import React, { useEffect } from "react";
+import Lottie from "lottie-react";
+import animationData from "../../assets/animation_logo.json";
 
-const LogoAnimation = ({ onComplete }) => {
+const SplashScreen = ({ onFinish }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
-      onComplete();
-    }, 2500);
+      onFinish();
+    }, 4000);
+
     return () => clearTimeout(timer);
-  }, [onComplete]);
+  }, [onFinish]);
 
   return (
-    <div className="logo-animation">
-      <div className="logo-container">
-        <Lottie animationData={animationData} loop={false} />
-      </div>
+    <div
+      className="fixed inset-0 bg-white z-50"
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+        width: "100vw",
+      }}
+    >
+      <Lottie
+        animationData={animationData}
+        loop={false}
+        style={{
+          width: "100%",
+          maxWidth: "300px",
+          height: "auto",
+        }}
+      />
     </div>
   );
 };
 
-export default LogoAnimation;
+export default SplashScreen;

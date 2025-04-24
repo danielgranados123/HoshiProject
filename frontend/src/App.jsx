@@ -12,7 +12,24 @@ from 'react-router'
 import Nav from './components/Navigation/Nav'
 import Footer from './components/Footer/Footer.jsx'
 
+import { useState, useEffect } from 'react'
+import SplashScreen from "./components/SplashScreen/LogoAnimation.jsx";
+
 function App() {
+
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false)
+    }, 1300) // Duración del splash screen en milisegundos
+    return () => clearTimeout(timer)
+  }, [])
+
+  if (loading) {
+    return <SplashScreen />
+  }
+
   return (
     <>
       <Router>

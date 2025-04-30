@@ -5,7 +5,8 @@ import Contact from './pages/Contact.jsx';
 import Catalog from './pages/Catalog/Catalog.jsx';
 import Account from './pages/Account/Account.jsx';
 import Terms from './pages/Terms/Terms.jsx';
-import PurchaseHistory from './pages/PurchaseHistory/PurchaseHistory.jsx'
+import PurchaseHistory from './pages/PurchaseHistory/PurchaseHistory.jsx';
+import CarInformation from './pages/CarInformation/CarInformation.jsx';
 
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router';
 
@@ -52,6 +53,7 @@ function App() {
           <Route path='/account' element={<Account />} />
           <Route path='/terms' element={<Terms />} />
           <Route path='/purchaseHistory' element={<PurchaseHistory />} />
+          <Route path='/carInformation' element={<CarInformation />} />
         </Routes>
         <Footer />
       </div>

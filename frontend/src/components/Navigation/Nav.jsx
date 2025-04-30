@@ -21,7 +21,7 @@ const Nav = () => {
                         <a href="/catalog" className="nav-link">Catálogo</a>
                     </li>
                     <li>
-                        <a href="/shop" className="nav-link">
+                        <a href="/purchaseHistory" className="nav-link">
                         <img src={Shop}/>
                         </a>
                     </li>

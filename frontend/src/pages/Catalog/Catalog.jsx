@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './Catalog.css';
-import AboutHeader from "../../assets/about_header.svg"
+import CatalogHeader from "../../assets/catalog_header.svg"
 import Toyota from "../../assets/toyota.svg";
 
 const Catalog = () => {
@@ -23,7 +23,7 @@ const Catalog = () => {
                         auto ideal de forma fácil y segura.<br /><br /></p>
                 </div>
                 <div className='about1-img'>
-                    <img src={AboutHeader} alt="Sobre Nosotros" />
+                    <img src={CatalogHeader} alt="Sobre Nosotros" />
                 </div>
             </div>
 

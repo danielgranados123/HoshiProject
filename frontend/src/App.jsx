@@ -5,6 +5,7 @@ import Contact from './pages/Contact.jsx';
 import Catalog from './pages/Catalog/Catalog.jsx';
 import Account from './pages/Account/Account.jsx';
 import Terms from './pages/Terms/Terms.jsx';
+import PurchaseHistory from './pages/PurchaseHistory/PurchaseHistory.jsx'
 
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router';
 
@@ -16,23 +17,20 @@ import SplashScreen from "./components/SplashScreen/LogoAnimation.jsx";
 
 function SplashScreenWrapper() {
   const [loading, setLoading] = useState(true);
-  const location = useLocation(); // Obtiene la ubicación actual de la ruta
+  const location = useLocation();
 
   useEffect(() => {
-    // Solo muestra la SplashScreen cuando estamos en la página de inicio
     if (location.pathname === '/') {
       const timer = setTimeout(() => {
-        setLoading(false); // Ocultar la SplashScreen después de 1.1 segundos
-      }, 1100); // Duración en milisegundos
+        setLoading(false);
+      }, 1100);
 
-      // Limpiar el timer cuando el componente se desmonte
       return () => clearTimeout(timer);
     } else {
-      setLoading(false); // Si no estamos en la página de inicio, no mostrarla
+      setLoading(false);
     }
-  }, [location.pathname]); // Dependemos de la ruta actual para mostrarla solo en "/"
+  }, [location.pathname]);
 
-  // Solo mostrar la SplashScreen cuando estamos en la página de inicio
   if (loading && location.pathname === '/') {
     return <SplashScreen onFinish={() => setLoading(false)} />;
   }
@@ -43,7 +41,7 @@ function SplashScreenWrapper() {
 function App() {
   return (
     <Router>
-      <SplashScreenWrapper />  {/* Aquí se maneja la splash screen */}
+      <SplashScreenWrapper />
       <div className="page-content">
         <Nav />
         <Routes>
@@ -53,6 +51,7 @@ function App() {
           <Route path="/catalog" element={<Catalog />} />
           <Route path='/account' element={<Account />} />
           <Route path='/terms' element={<Terms />} />
+          <Route path='/purchaseHistory' element={<PurchaseHistory />} />
         </Routes>
         <Footer />
       </div>

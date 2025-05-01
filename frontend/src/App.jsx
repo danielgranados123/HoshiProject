@@ -7,6 +7,11 @@ import Account from './pages/Account/Account.jsx';
 import Terms from './pages/Terms/Terms.jsx';
 import PurchaseHistory from './pages/PurchaseHistory/PurchaseHistory.jsx';
 import CarInformation from './pages/CarInformation/CarInformation.jsx';
+import Login from './pages/login/login.jsx';
+import Register from './pages/Register/Register.jsx';
+import RecoveryPassword from "./pages/RecoveyPassword/RecoveryPassword.jsx";
+import Recoverypass2 from "./pages/RecoveyPassword2/Recoveypass2.jsx";
+import Recoverypass3 from "./pages/RecoveryPassword3/Recoverypass3.jsx";
 
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router';
 
@@ -54,6 +59,11 @@ function App() {
           <Route path='/terms' element={<Terms />} />
           <Route path='/purchaseHistory' element={<PurchaseHistory />} />
           <Route path='/carInformation' element={<CarInformation />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/Register' element={<Register />} />
+          <Route path='/RecoveryPassword' element={<RecoveryPassword />} />
+          <Route path='/Recoverypass2' element={<Recoverypass2 />} />
+          <Route path='/Recoverypass3' element={<Recoverypass3 />} />
         </Routes>
         <Footer />
       </div>

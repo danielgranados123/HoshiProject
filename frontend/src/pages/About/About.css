@@ -303,3 +303,111 @@
   color: white;
   font-size: 40px;
 }
+
+/*Mobile responsiveness*/
+@media (max-width: 768px) {
+    .content {
+        margin: 5% 5%;
+    }
+
+    .about1 {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about1-tittle {
+        font-size: 6vh;
+    }
+
+    .about1-img {
+        margin-top: 2vh;
+        align-items: center;
+    }
+
+    .history-tittle, .mision-tittle, .vision-tittle, .values-tittle {
+        font-size: 35px;
+    }
+
+    .hitory-text, .mision-text, .vision-text {
+        margin: 0;
+        text-align: justify;
+        font-size: 1.4vh;
+    }
+
+    .mision-content, .vision-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .mision-left, .vision-right {
+        margin: 0;
+        text-align: center;
+    }
+
+    .app {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .app-img {
+        margin-bottom: 2vh;
+        width: 80%;
+    }
+
+    .app-text {
+        text-align: center;
+    }
+
+    .app-tittle {
+        font-size: 5vh;
+    }
+
+    .app-button {
+        width: 100%;
+        margin-top: 2vh;
+    }
+
+    .values-content {
+        flex-direction: column;
+    }
+
+    .values-text {
+        margin-bottom: 2vh;
+    }
+}
+
+/*Small screen (mobile) */
+@media (max-width: 480px) {
+    .about1-tittle {
+        font-size: 5vh;
+    }
+
+    .mision-tittle, .vision-tittle {
+        font-size: 28px;
+    }
+
+    .mision-text, .vision-text, .hitory-text {
+        font-size: 1.2vh;
+    }
+
+    .app-tittle {
+        font-size: 4vh;
+    }
+
+    .app-txt {
+        font-size: 1.2vh;
+    }
+
+    .values-tittle {
+        font-size: 30px;
+    }
+
+    .v-icon-container {
+        width: 50px;
+        height: 50px;
+    }
+
+    .v-react-icon {
+        font-size: 1.5vh;
+    }
+}

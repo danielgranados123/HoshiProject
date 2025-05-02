@@ -471,3 +471,97 @@
         max-width: 80%;
     }
 }
+
+/* Responsive Design para pantallas pequeñas */
+@media screen and (max-width: 768px) {
+
+    .content {
+        margin: 5%;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .tittle1 {
+        font-size: 28px;
+    }
+
+    .catalog-tittle, .about-tittle, .app-tittle{
+        text-align: center;
+    }
+
+    .tittle2 {
+        font-size: 50px;
+        margin-top: 0;
+    }
+
+    .txt1, .txt2 {
+        text-align: center;
+    }
+
+    .explore {
+        position: static;
+        margin-top: 2vh;
+        font-size: 16px;
+    }
+
+    .header-img img {
+        max-width: 100%;
+    }
+
+    .brands-container {
+        gap: 15px;
+    }
+
+    .brand {
+        width: 80px;
+        height: 80px;
+    }
+
+    .app, .about {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .app-text, .about-text {
+        align-items: center;
+        text-align: center;
+    }
+
+    .app-img, .about-img {
+        justify-content: center;
+        margin: 3vh 0;
+    }
+
+    .app-img img, .about-img img {
+        max-width: 80vw;
+    }
+
+    .catalog-img {
+        flex-direction: column;
+        gap: 2vh;
+    }
+
+    .c-img {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    .e-cards-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .e-card {
+        width: 90%;
+        margin-bottom: 2vh;
+    }
+
+    .catalog-button, .app-button, .about-button, .extra-text button {
+        font-size: 14px;
+    }
+
+}

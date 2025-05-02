@@ -158,3 +158,49 @@ body {
 .submit-button:hover {
     background-color: rgb(233, 0, 0);
 }
+
+/*Responsive*/
+@media (max-width: 768px) {
+  .footer-container {
+    padding: 5% 5%;
+  }
+
+  .nav-title {
+    font-size: 1.2rem;
+  }
+
+  .logo-img {
+    height: 40px;
+  }
+
+  .social-icon {
+    font-size: 18px;
+    margin: 2% 3%;
+  }
+
+  .footer-link {
+    font-size: 0.9rem;
+  }
+
+  .copy {
+    font-size: 0.85rem;
+  }
+
+  .input-field {
+    font-size: 14px;
+    height: 60px;
+  }
+
+  .submit-button {
+    font-size: 14px;
+    padding: 0.5vh 0.4vh 0.5vh 1.5vh;
+    width: 80%;
+    right: 1vh;
+    top: 60%;
+  }
+
+  .send-icon {
+    font-size: 16px;
+  }
+}
+

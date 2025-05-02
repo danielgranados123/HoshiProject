@@ -3,7 +3,14 @@ import './Catalog.css';
 import CatalogHeader from "../../assets/catalog_header.svg"
 import Toyota from "../../assets/toyota.svg";
 
+import { useNavigate } from 'react-router-dom';
+
 const Catalog = () => {
+  const navigate = useNavigate();
+
+  const infoRedirect = () => {
+    navigate('/catalog');
+  };
     const [marca, setMarca] = useState("");
     const [precio, setPrecio] = useState("");
     const [tipoVenta, setTipoVenta] = useState("");
@@ -100,7 +107,7 @@ const Catalog = () => {
     <h2 className="car-title">TOYOTA COROLLA 2019</h2>
     <p className="car-price">$12,800.<sup>00</sup></p>
     <p className="car-details">Gasolina • 117,000 km</p>
-    <button className="car-button">Más</button>
+    <button className="car-button" onClick={infoRedirect}>Más</button>
   </div>
 </div>
 

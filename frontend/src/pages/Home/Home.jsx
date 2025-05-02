@@ -19,7 +19,18 @@ import { MdSupportAgent } from "react-icons/md";
 import { FaRegStar } from "react-icons/fa6";
 import { MdOutlineStorefront } from "react-icons/md";
 
+import { useNavigate } from 'react-router-dom';
+
 const Home = () => {
+    const navigate = useNavigate();
+
+  const catalogRedirect = () => {
+    navigate('/catalog');
+  };
+
+  const aboutRedirect = () => {
+    navigate('/about');
+  };
     return (
         <div className='content'>
             {/*Header section*/}
@@ -27,7 +38,7 @@ const Home = () => {
                 <div className='text1-header'>
                     <h1 className='tittle1'>Tu próximo auto</h1>
                     <h2 className='tittle2'>ESTÁ AQUÍ</h2>
-                    <button class="explore" href="/catalog">
+                    <button class="explore" onClick={catalogRedirect}>
                         Explorar <MdOutlineExplore className="explore-icon" />
                     </button>
                 </div>
@@ -104,7 +115,7 @@ const Home = () => {
                     diseñado para satisfacer tus necesidades.<br /><br />
                     <strong>Descubre por qué miles de clientes confían en Hoshi.</strong></p>
                         <br />
-                    <button class="app-button" href="/about">
+                    <button class="app-button" onClick={aboutRedirect}>
                         Saber más<FaSearch className="about-icon"/>
                     </button>
                 </div>
@@ -122,7 +133,7 @@ const Home = () => {
                     Encuentra el que se ajuste a tus necesidades y empieza a disfrutar<br />
                     de cada recorrido.</p>
                         <br />
-                    <button class="app-button">
+                    <button class="app-button" onClick={catalogRedirect}>
                         Ver más<FiPlusCircle className="catalog-icon"/>
                     </button>
                 </div>

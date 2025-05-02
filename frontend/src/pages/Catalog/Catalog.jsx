@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './Catalog.css';
 import CatalogHeader from "../../assets/catalog_header.svg"
-import Toyota from "../../assets/toyota.svg";
+import CarCard from '../../components/CarCard/CarCard.jsx';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -9,7 +9,7 @@ const Catalog = () => {
   const navigate = useNavigate();
 
   const infoRedirect = () => {
-    navigate('/catalog');
+    navigate('/carInformation');
   };
     const [marca, setMarca] = useState("");
     const [precio, setPrecio] = useState("");
@@ -97,93 +97,41 @@ const Catalog = () => {
 </div>
 
 <div className="car-grid">
-<div className="car-card">
-  <img src="https://th.bing.com/th/id/OIP.YfRDvqnagNYYPsVfW0foEQHaEo?rs=1&pid=ImgDetMain" alt="Toyota Corolla 2019" className="car-image" />
-
-  <div className="car-info">
-    <div className="car-brand-icon">
-      <img src="https://th.bing.com/th/id/OIP.vdKspdNnUEqu4jTZvU7rkwAAAA?rs=1&pid=ImgDetMain" alt="Toyota" className="brand-icon" />
+    <div className="app">
+      <CarCard infoRedirect={infoRedirect} />
     </div>
-    <h2 className="car-title">TOYOTA COROLLA 2019</h2>
-    <p className="car-price">$12,800.<sup>00</sup></p>
-    <p className="car-details">Gasolina • 117,000 km</p>
-    <button className="car-button" onClick={infoRedirect}>Más</button>
-  </div>
-</div>
 
-
-<div className="car-card">
-  <img src="https://th.bing.com/th/id/OIP.YfRDvqnagNYYPsVfW0foEQHaEo?rs=1&pid=ImgDetMain" alt="Toyota Corolla 2019" className="car-image" />
-
-  <div className="car-info">
-    <div className="car-brand-icon">
-      <img src="https://th.bing.com/th/id/OIP.vdKspdNnUEqu4jTZvU7rkwAAAA?rs=1&pid=ImgDetMain" alt="Toyota" className="brand-icon" />
+    <div className="app">
+      <CarCard infoRedirect={infoRedirect} />
     </div>
-    <h2 className="car-title">TOYOTA COROLLA 2019</h2>
-    <p className="car-price">$12,800.<sup>00</sup></p>
-    <p className="car-details">Gasolina • 117,000 km</p>
-    <button className="car-button">Más</button>
-  </div>
-</div>
 
-
-<div className="car-card">
-  <img src="https://th.bing.com/th/id/OIP.YfRDvqnagNYYPsVfW0foEQHaEo?rs=1&pid=ImgDetMain" alt="Toyota Corolla 2019" className="car-image" />
-
-  <div className="car-info">
-    <div className="car-brand-icon">
-      <img src="https://th.bing.com/th/id/OIP.vdKspdNnUEqu4jTZvU7rkwAAAA?rs=1&pid=ImgDetMain" alt="Toyota" className="brand-icon" />
+    <div className="app">
+      <CarCard infoRedirect={infoRedirect} />
     </div>
-    <h2 className="car-title">TOYOTA COROLLA 2019</h2>
-    <p className="car-price">$12,800.<sup>00</sup></p>
-    <p className="car-details">Gasolina • 117,000 km</p>
-    <button className="car-button">Más</button>
-  </div>
-</div>
 
-<div className="car-card">
-  <img src="https://th.bing.com/th/id/OIP.YfRDvqnagNYYPsVfW0foEQHaEo?rs=1&pid=ImgDetMain" alt="Toyota Corolla 2019" className="car-image" />
-
-  <div className="car-info">
-    <div className="car-brand-icon">
-      <img src="https://th.bing.com/th/id/OIP.vdKspdNnUEqu4jTZvU7rkwAAAA?rs=1&pid=ImgDetMain" alt="Toyota" className="brand-icon" />
+    <div className="app">
+      <CarCard infoRedirect={infoRedirect} />
     </div>
-    <h2 className="car-title">TOYOTA COROLLA 2019</h2>
-    <p className="car-price">$12,800.<sup>00</sup></p>
-    <p className="car-details">Gasolina • 117,000 km</p>
-    <button className="car-button">Más</button>
-  </div>
-</div>
 
-
-<div className="car-card">
-  <img src="https://th.bing.com/th/id/OIP.YfRDvqnagNYYPsVfW0foEQHaEo?rs=1&pid=ImgDetMain" alt="Toyota Corolla 2019" className="car-image" />
-
-  <div className="car-info">
-    <div className="car-brand-icon">
-      <img src="https://th.bing.com/th/id/OIP.vdKspdNnUEqu4jTZvU7rkwAAAA?rs=1&pid=ImgDetMain" alt="Toyota" className="brand-icon" />
+    <div className="app">
+      <CarCard infoRedirect={infoRedirect} />
     </div>
-    <h2 className="car-title">TOYOTA COROLLA 2019</h2>
-    <p className="car-price">$12,800.<sup>00</sup></p>
-    <p className="car-details">Gasolina • 117,000 km</p>
-    <button className="car-button">Más</button>
-  </div>
-</div>
 
-
-<div className="car-card">
-  <img src="https://th.bing.com/th/id/OIP.YfRDvqnagNYYPsVfW0foEQHaEo?rs=1&pid=ImgDetMain" alt="Toyota Corolla 2019" className="car-image" />
-
-  <div className="car-info">
-    <div className="car-brand-icon">
-      <img src="https://th.bing.com/th/id/OIP.vdKspdNnUEqu4jTZvU7rkwAAAA?rs=1&pid=ImgDetMain" alt="Toyota" className="brand-icon" />
+    <div className="app">
+      <CarCard infoRedirect={infoRedirect} />
     </div>
-    <h2 className="car-title">TOYOTA COROLLA 2019</h2>
-    <p className="car-price">$12,800.<sup>00</sup></p>
-    <p className="car-details">Gasolina • 117,000 km</p>
-    <button className="car-button">Más</button>
-  </div>
-</div>
+
+    <div className="app">
+      <CarCard infoRedirect={infoRedirect} />
+    </div>
+
+    <div className="app">
+      <CarCard infoRedirect={infoRedirect} />
+    </div>
+
+    <div className="app">
+      <CarCard infoRedirect={infoRedirect} />
+    </div>
 </div>
 <div className="pagination-container">
   <p className="pagination-title">Ver más</p>

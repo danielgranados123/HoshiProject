@@ -1,6 +1,7 @@
 import React from 'react';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import Slider from 'react-slick'; // Importamos el componente Slick
 import './CarInformation.css';
 
 const MySwal = withReactContent(Swal);
@@ -59,6 +60,7 @@ const CarContainer = () => {
 
         if (!nombre || !telefono || !correo || !fecha || !hora || !metodo) {
           Swal.showValidationMessage('Por favor completa todos los campos.');
+          return false;
         }
 
         return { nombre, telefono, correo, fecha, hora, metodo };
@@ -66,17 +68,50 @@ const CarContainer = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         console.log('Datos ingresados:', result.value);
-        // Aquí puedes enviar los datos o mostrarlos en otra parte
         Swal.fire('Cita registrada', 'Tu cita ha sido agendada exitosamente.', 'success');
       }
     });
   };
 
+  const carImages = [
+    "https://thafd.bing.com/th/id/OIP.eHgotXEz241Lhqdpc2iSCgHaFK?rs=1&pid=ImgDetMain",
+    "https://thafd.bing.com/th/id/OIP.eHgotXEz241Lhqdpc2iSCgHaFK?rs=1&pid=ImgDetMain",
+    "https://thafd.bing.com/th/id/OIP.eHgotXEz241Lhqdpc2iSCgHaFK?rs=1&pid=ImgDetMain"
+  ];
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000
+  };
+
   return (
     <div className="car-container">
-      <button className="cta-button" onClick={handleAgendarCita}>
-        Agendar cita
-      </button>
+      <div className="car-content">
+        {/* Carrusel a la izquierda 
+        <div className="car-carousel-container">
+          <Slider {...settings}>
+            {carImages.map((image, index) => (
+              <div key={index}>
+                <img src={image} alt={`Car Image ${index + 1}`} className="carousel-image" />
+              </div>
+            ))}
+          </Slider>
+        </div>
+
+        <div className="car-text-container">
+          <h2>Detalles del automóvil</h2>
+          <p>Este es un vehículo de lujo con todas las características premium que necesitas. Contamos con los mejores servicios de mantenimiento y reparación.</p>
+          <p>¡Agendar una cita nunca fue tan fácil!</p>*/}
+          <button className="cta-button" onClick={handleAgendarCita}>
+            Agendar cita
+          </button>
+        
+      </div>
     </div>
   );
 };

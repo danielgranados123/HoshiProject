@@ -7,7 +7,7 @@ import Account from './pages/Account/Account.jsx';
 import Terms from './pages/Terms/Terms.jsx';
 import PurchaseHistory from './pages/PurchaseHistory/PurchaseHistory.jsx';
 import CarInformation from './pages/CarInformation/CarInformation.jsx';
-import Login from './pages/login/login.jsx';
+import Login from './pages/login/Login.jsx';
 import Register from './pages/Register/Register.jsx';
 import RecoveryPassword from "./pages/RecoveyPassword/RecoveryPassword.jsx";
 import Recoverypass2 from "./pages/RecoveyPassword2/Recoveypass2.jsx";

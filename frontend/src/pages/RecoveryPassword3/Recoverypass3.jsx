@@ -1,5 +1,6 @@
 import './Recoverypass3.css';
 import React from 'react';
+import LoginI from "../../assets/login.svg";
 
 
 export default function RecoveryPass3() {
@@ -8,7 +9,7 @@ export default function RecoveryPass3() {
 
       <div className="recoveredpass1-image-section">
         <img
-          src="/path-to-your-image.png"
+          src={LoginI}
          
           className="recoveredpass1-image"
         />

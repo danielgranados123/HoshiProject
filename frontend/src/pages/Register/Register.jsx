@@ -1,12 +1,13 @@
 import React from 'react';
 import './Register.css';
+import LoginI from "../../assets/login.svg";
 
 const Register = () => {
   return (
     <div className="register-container">
       <div className="register-image-section">
         <img
-          src="/path-to-your-image.png"
+          src={LoginI}
           alt="Car interior"
           className="register-car-image"
         />

@@ -1,12 +1,13 @@
 import React from 'react';
 import './Recoveypass2';
+import LoginI from "../../assets/login.svg";
 
 const RecoveredPassword2 = () => {
   return (
     <div className="recoveredpass1-container">
       <div className="recoveredpass1-image-section">
         <img
-          src="/path-to-your-image.png"
+          src={LoginI}
          
           className="recoveredpass1-image"
         />

@@ -1,12 +1,12 @@
 import React from "react";
-import './login.css';
+import './Login.css';
+import LoginI from "../../assets/login.svg";
 
 const Login = () => {
   return (
     <div className="login-container">
       <div className="image-section">
-        <img src="/path/to/your/image.png" alt="Car" className="login-image" />
-        <div className="logo">HOSHI</div>
+        <img src={LoginI} alt="Car" className="login-image" />
       </div>
 
       <div className="form-section">

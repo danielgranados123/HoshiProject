@@ -60,8 +60,8 @@ function App() {
           <Route path='/purchaseHistory' element={<PurchaseHistory />} />
           <Route path='/carInformation' element={<CarInformation />} />
           <Route path='/login' element={<Login />} />
-          <Route path='/Register' element={<Register />} />
-          <Route path='/RecoveryPassword' element={<RecoveryPassword />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/recovery' element={<RecoveryPassword />} />
           <Route path='/Recoverypass2' element={<Recoverypass2 />} />
           <Route path='/Recoverypass3' element={<Recoverypass3 />} />
         </Routes>

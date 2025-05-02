@@ -1,8 +1,14 @@
 import React from "react";
 import './Login.css';
 import LoginI from "../../assets/login.svg";
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const handleLoginRedirect = () => {
+    navigate('/');
+  };
   return (
     <div className="login-container">
       <div className="image-section">
@@ -25,13 +31,13 @@ const Login = () => {
             <input type="password" placeholder="************" />
           </label>
 
-          <a href="#" className="forgot-password">¿Olvidaste tu contraseña?</a>
+          <a href="/recovery" className="forgot-password">¿Olvidaste tu contraseña?</a>
 
-          <button type="submit" className="btn-login">Ingresar</button>
+          <button type="submit" className="btn-login" onClick={handleLoginRedirect}>Ingresar</button>
 
           <p className="register-text">
             ¿No tienes una cuenta?
-            <a href="#" className="btn-register">Registrarme</a>
+            <a href="/register" className="btn-register">Registrarme</a>
           </p>
         </form>
       </div>

@@ -1,8 +1,14 @@
 import React from 'react';
 import './RecoveryPassword.css';
 import LoginI from "../../assets/login.svg";
+import { useNavigate } from 'react-router-dom';
 
 const RecoveredPassword1 = () => {
+  const navigate = useNavigate();
+
+  const handleLoginRedirect = () => {
+    navigate('/recoverypass2');
+  };
   return (
     <div className="recoveredpass1-container">
       <div className="recoveredpass1-image-section">
@@ -23,7 +29,7 @@ const RecoveredPassword1 = () => {
               className="recoveredpass1-input"
             />
           </label>
-          <button type="submit" className="recoveredpass1-button">
+          <button type="submit" className="recoveredpass1-button" onClick={handleLoginRedirect}>
             Enviar código
           </button>
         </form>

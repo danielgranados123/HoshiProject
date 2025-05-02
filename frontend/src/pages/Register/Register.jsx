@@ -1,8 +1,15 @@
 import React from 'react';
 import './Register.css';
 import LoginI from "../../assets/login.svg";
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
+  const navigate = useNavigate();
+
+  const handleLoginRedirect = () => {
+    navigate('/login');
+  };
+
   return (
     <div className="register-container">
       <div className="register-image-section">
@@ -40,10 +47,10 @@ const Register = () => {
             Contraseña:<span>*</span>
             <input type="password" placeholder="***************" className="register-input" />
           </label>
-          <button type="submit" className="register-button">Registrarme</button>
+          <button type="submit" className="register-button" onClick={handleLoginRedirect}>Registrarme</button>
         </form>
         <p className="register-login-text">¿Ya tienes una cuenta?</p>
-        <button className="register-login-button">Iniciar Sesión</button>
+        <button className="register-login-button" onClick={handleLoginRedirect}>Iniciar Sesión</button>
       </div>
     </div>
   );

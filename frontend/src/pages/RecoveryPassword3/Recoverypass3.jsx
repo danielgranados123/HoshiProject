@@ -1,9 +1,15 @@
 import './Recoverypass3.css';
 import React from 'react';
 import LoginI from "../../assets/login.svg";
+import { useNavigate } from 'react-router-dom';
 
 
 export default function RecoveryPass3() {
+  const navigate = useNavigate();
+
+  const handleLoginRedirect = () => {
+    navigate('/login');
+  };
   return (
     <div className="recoverypass3-container">
 
@@ -25,10 +31,10 @@ export default function RecoveryPass3() {
             <input type="password" placeholder="**********" />
           </div>
           <div className="recoverypass3-input-group">
-            <label><span className="recoverypass3-bullet">●</span> Volver a escribir contraseña</label>
+            <label><span className="recoverypass3-bullet">●</span> Confirmar contraseña</label>
             <input type="password" placeholder="**********" />
           </div>
-          <button type="submit" className="recoverypass3-button">Cambiar contraseña</button>
+          <button type="submit" className="recoverypass3-button" onClick={handleLoginRedirect}>Cambiar contraseña</button>
         </form>
       </div>
     </div>

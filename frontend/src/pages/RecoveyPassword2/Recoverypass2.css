@@ -1,70 +1,136 @@
+/* General Styles */
 .recoveredpass1-container {
-    display: flex;
-    max-width: 700px;
-    margin: auto;
-    border: 1px solid #ccc;
-    font-family: 'Segoe UI', sans-serif;
-    border-radius: 10px;
-    overflow: hidden;
+  display: flex;
+  max-width: 700px;
+  margin: auto;
+  border: 1px solid #ccc;
+  font-family: 'Segoe UI', sans-serif;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-wrap: wrap; /* Permite que los elementos se acomoden en pantallas pequeñas */
+}
+
+.recoveredpass1-image-section {
+  flex: 1;
+  min-height: 250px;
+}
+
+.recoveredpass1-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-right: 1px solid #ccc;
+}
+
+.recoveredpass1-form-section {
+  flex: 1;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.recoveredpass1-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #111;
+  margin-bottom: 25px;
+}
+
+.recoveredpass1-label {
+  display: block;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.recoveredpass1-label span {
+  color: red;
+  margin-left: 5px;
+}
+
+.recoveredpass1-input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background: #eee;
+}
+
+.recoveredpass1-button {
+  width: 100%;
+  padding: 12px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-weight: bold;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .recoveredpass1-container {
+      flex-direction: column; /* Cambiar de fila a columna en pantallas pequeñas */
+      padding: 20px;
   }
-  
+
   .recoveredpass1-image-section {
-    flex: 1;
+      width: 100%;
+      min-height: 250px; /* Asegura que la imagen no se distorsione */
   }
-  
-  .recoveredpass1-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-right: 1px solid #ccc;
-  }
-  
+
   .recoveredpass1-form-section {
-    flex: 1;
-    padding: 40px 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+      padding: 30px 20px;
   }
-  
+
   .recoveredpass1-title {
-    font-size: 20px;
-    font-weight: bold;
-    color: #111;
-    margin-bottom: 25px;
+      font-size: 18px;
   }
-  
+
   .recoveredpass1-label {
-    display: block;
-    font-weight: bold;
-    font-size: 14px;
-    margin-bottom: 15px;
-    color: #333;
+      font-size: 13px;
   }
-  
-  .recoveredpass1-label span {
-    color: red;
-    margin-left: 5px;
-  }
-  
+
   .recoveredpass1-input {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    background: #eee;
+      font-size: 14px;
   }
-  
+
   .recoveredpass1-button {
-    width: 100%;
-    padding: 12px;
-    background-color: red;
-    color: white;
-    border: none;
-    border-radius: 25px;
-    font-weight: bold;
-    margin-top: 20px;
-    cursor: pointer;
+      font-size: 14px;
   }
-  
+}
+
+@media (max-width: 480px) {
+  .recoveredpass1-container {
+      padding: 10px;
+  }
+
+  .recoveredpass1-image-section {
+      width: 100%;
+      min-height: 200px; /* Ajusta la imagen para pantallas muy pequeñas */
+  }
+
+  .recoveredpass1-form-section {
+      padding: 20px 10px;
+  }
+
+  .recoveredpass1-title {
+      font-size: 16px;
+  }
+
+  .recoveredpass1-label {
+      font-size: 12px;
+  }
+
+  .recoveredpass1-input {
+      font-size: 13px;
+  }
+
+  .recoveredpass1-button {
+      font-size: 13px;
+  }
+}

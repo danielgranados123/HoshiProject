@@ -1,0 +1,150 @@
+/* SalesRegister.css */
+/* Importa el sidebar y hamburger de Sales */
+@import "../Sales/Sales.css";
+
+/* Main content */
+.main-content.register-content {
+  flex-grow: 1;
+  background: #f9f9f9;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+/* Header */
+.register-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-direction: row;
+    width: 80%;
+}
+.register-header .back-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #000;
+  display: flex;
+  align-items: center;
+}
+.register-header h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+}
+.register-header .sub-title {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Grid: formulario + tarjeta */
+.register-grid {
+  display: grid;
+  grid-template-columns: 40% 10%;
+  gap: 2rem;
+  width: 80%;
+}
+
+/* Form card */
+.register-form {
+    background: #fff;
+    border-radius: 10px;
+    padding: 2rem;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    height: 100%;
+}
+
+/* Labels con punto rojo */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  position: relative;
+}
+.form-group label::before {
+  content: "•";
+  color: #d50000;
+  position: absolute;
+  left: -1rem;
+  top: 0;
+}
+
+/* Inputs y selects estilo “grayed-out” */
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #ebebeb;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+/* Botón “+” */
+.input-plus {
+  display: flex;
+  align-items: center;
+}
+.plus-btn {
+  margin-left: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: #000;
+  color: #fff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+/* Guardar */
+.save-btn {
+  margin-top: 1rem;
+  width: 100%;
+  padding: 1rem;
+  background: #d50000;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+/* Preview card */
+.car-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    height: 60%;
+    margin-top: 110%;
+}
+.car-card img {
+  width: 100%;
+  display: block;
+}
+.card-content {
+  padding: 1rem;
+}
+.card-content h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+}
+.card-content .price {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+.card-content .details {
+  color: #666;
+  font-size: 0.9rem;
+}

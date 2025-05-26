@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 // Reutilizamos Sales.css para sidebar + hamburger
 import "../Sales/Sales.css";
 import "./SalesRegister.css";
+import ToyotaSvg from "../../assets/toyota.svg";
 
 import {
   FaHome,
@@ -51,26 +52,14 @@ const SalesRegister = () => {
         </div>
         <nav>
           <ul>
-            <li onClick={() => navigate("/")}>
-              <FaHome /> Inicio
-            </li>
-            <li className="active">
-              <FaShoppingCart /> Ventas
-            </li>
-            <li>
-              <FaUser /> Clientes
-            </li>
-            <li>
-              <FaBox /> Catálogo
-            </li>
-            <li>
-              <FaUsersCog /> Empleados
-            </li>
+            <li onClick={() => navigate("/")}> <FaHome /> Inicio </li>
+            <li className="active"> <FaShoppingCart /> Ventas </li>
+            <li> <FaUser /> Clientes </li>
+            <li> <FaBox /> Catálogo </li>
+            <li> <FaUsersCog /> Empleados </li>
           </ul>
         </nav>
-
         <div className="bottom-section">
-          {/* Reinsertamos la greeting idéntica */}
           <div className="greeting">
             <p><strong>¡Buenos días, Bryan!</strong></p>
             <p>Miércoles 26 de febrero</p>
@@ -86,7 +75,7 @@ const SalesRegister = () => {
 
       {/* Main content */}
       <main className="main-content register-content">
-        {/* Header con flecha + título grande + subtítulo */}
+        {/* Header con flecha + título + subtítulo abajo */}
         <header className="register-header">
           <button
             className="back-btn"
@@ -94,8 +83,10 @@ const SalesRegister = () => {
           >
             <FaArrowLeft />
           </button>
-          <h1>Ventas</h1>
-          <span className="sub-title">Nuevo registro</span>
+          <div className="title-container">
+            <h1>Ventas</h1>
+            <span className="sub-title">Nuevo registro</span>
+          </div>
         </header>
 
         {/* Grid: Formulario + Vista previa */}
@@ -172,7 +163,7 @@ const SalesRegister = () => {
 
           <div className="car-card">
             <img
-              src="https://via.placeholder.com/400x250?text=KIA+RIO+2019"
+              src= {ToyotaSvg}
               alt="KIA RIO 2019"
             />
             <div className="card-content">

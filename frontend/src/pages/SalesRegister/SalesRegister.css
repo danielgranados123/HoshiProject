@@ -2,22 +2,19 @@
 /* Importa el sidebar y hamburger de Sales */
 @import "../Sales/Sales.css";
 
-/* Main content */
 .main-content.register-content {
   flex-grow: 1;
   background: #f9f9f9;
-  padding: 2rem;
+  padding: 80px 0;
   overflow-y: auto;
 }
 
-/* Header */
 .register-header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    flex-direction: row;
-    width: 80%;
+  display: flex;
+  align-items: flex-start;
+  gap: 3.92%;
+
+  width: 90%;
 }
 .register-header .back-btn {
   background: none;
@@ -27,18 +24,23 @@
   color: #000;
   display: flex;
   align-items: center;
+  margin-top: 2.1%;
+}
+.register-header .title-container {
+  display: flex;
+  flex-direction: column;
 }
 .register-header h1 {
   margin: 0;
-  font-size: 2rem;
+  font-size: 75px;
   font-weight: bold;
 }
 .register-header .sub-title {
-  font-size: 1rem;
+  font-size: 2rem;
   color: #666;
+  margin-top: 0.5rem;
 }
 
-/* Grid: formulario + tarjeta */
 .register-grid {
   display: grid;
   grid-template-columns: 40% 10%;
@@ -46,14 +48,13 @@
   width: 80%;
 }
 
-/* Form card */
 .register-form {
-    background: #fff;
-    border-radius: 10px;
-    padding: 2rem;
-    width: 100%;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    height: 100%;
+  background: #fff;
+  border-radius: 10px;
+  padding: 2rem;
+  padding-left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 /* Labels con punto rojo */
@@ -65,6 +66,7 @@
   margin-bottom: 0.5rem;
   font-weight: bold;
   position: relative;
+  font-size: 120%;
 }
 .form-group label::before {
   content: "•";
@@ -77,39 +79,44 @@
 /* Inputs y selects estilo “grayed-out” */
 .form-group input,
 .form-group select {
-  width: 100%;
+  width: 85%;
   padding: 0.75rem 1rem;
   border: none;
   border-radius: 8px;
   background: #ebebeb;
   font-size: 1rem;
   box-sizing: border-box;
+
 }
 
 /* Botón “+” */
 .input-plus {
   display: flex;
   align-items: center;
+  gap: 5%;
 }
 .plus-btn {
-  margin-left: 0.5rem;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  background: #000;
-  color: #fff;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  cursor: pointer;
+  background-color: #d50000;
+    color: #fff;
+    border: none;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    font-size: 28px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    transition: background-color 0.3sease;
 }
 
 /* Guardar */
 .save-btn {
   margin-top: 1rem;
-  width: 100%;
+  width: 85%;
   padding: 1rem;
   background: #d50000;
   color: #fff;
@@ -125,8 +132,9 @@
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    height: 60%;
-    margin-top: 110%;
+    height: 80%;
+    margin-top: 20%;
+    width: 270%;
 }
 .car-card img {
   width: 100%;

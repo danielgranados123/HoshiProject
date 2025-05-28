@@ -1,8 +1,9 @@
-// src/components/Customers/Customers.jsx
+// src/pages/Customers.jsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import useCustomers from "../../components/Customers/hooks/useCustomers";
-import "./Customers.css";
+import CustomersList from "../../components/Customers/customersList";
+import "../Sales/Sales.css";
+import "../Customers/Customers.css";
 import {
   FaHome,
   FaShoppingCart,
@@ -16,7 +17,6 @@ import Logo from "../../assets/logo.svg";
 
 export default function Customers() {
   const navigate = useNavigate();
-  const { customers, loading, error } = useCustomers();
 
   return (
     <div className="customers-page">
@@ -68,26 +68,7 @@ export default function Customers() {
             </div>
           </header>
 
-          <section className="customers-section">
-            <div className="customers-header">
-              <span>Cliente</span>
-              <span></span>
-            </div>
-            <div className="customers-scroll">
-              {loading && <p>Cargando clientes…</p>}
-              {error && <p style={{ color: "red" }}>{error}</p>}
-              {!loading && !error && (
-                <ul className="customers-list">
-                  {customers.map((c) => (
-                    <li key={c._id} className="customer-item">
-                      <div className="customer-name">{c.name}</div>
-                      <span className="options">⋮</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          </section>
+          <CustomersList />
         </main>
       </div>
     </div>

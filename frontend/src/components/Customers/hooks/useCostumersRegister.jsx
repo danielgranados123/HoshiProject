@@ -1,3 +1,4 @@
+// src/components/Customers/hooks/useRegisterCustomer.jsx
 import { useState } from "react";
 
 export default function useRegisterCustomer() {

@@ -1,10 +1,8 @@
 // src/pages/Customers/CustomersRegister.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// sidebar + hamburger styles
 import "../Sales/Sales.css";
-// form-specific styles
-import "./CustomersRegister.css";
+import "./EmployeeesRegister.css";
 
 import {
   FaHome,
@@ -25,15 +23,16 @@ const CustomersRegister = () => {
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
-  const [dni, setDni] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [role, setRole] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [username, setUsername] = useState("");
+  const [salary, setSalary] = useState("");
   const [password, setPassword] = useState("");
 
   const handleGuardar = () => {
-    // aquí llamas a tu backend para guardar el cliente
-    navigate("/Customers");
+  
+    navigate("/Employees");
   };
 
   return (
@@ -85,11 +84,11 @@ const CustomersRegister = () => {
       <main className="main-content register-content">
         {/* Header */}
         <header className="register-header">
-          <button className="back-btn" onClick={() => navigate("/Customers")}>
+          <button className="back-btn" onClick={() => navigate("/Employees")}>
             <FaArrowLeft />
           </button>
           <div className="title-container">
-            <h1>Clientes</h1>
+            <h1>Empleados</h1>
             <span className="sub-title">Nuevo registro</span>
           </div>
         </header>
@@ -104,49 +103,25 @@ const CustomersRegister = () => {
             }}
           >
             <div className="form-group">
-              <label>Nombre completo</label>
+              <label>Nombres</label>
               <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Wilfredo Granados"
+                placeholder="Daniel Isaac"
                 required
               />
             </div>
-
             <div className="form-group">
-              <label>Teléfono</label>
-              <input
-                type="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder="9876-5432"
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label>DNI (Documento de identificación)</label>
+              <label>Apellidos</label>
               <input
                 type="text"
-                value={dni}
-                onChange={(e) => setDni(e.target.value)}
-                placeholder="12345678-9"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                placeholder="Granados Cañas"
                 required
               />
             </div>
-
-            <div className="form-group">
-              <label>Usuario</label>
-              <input
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="SS20240123"
-                required
-              />
-            </div>
-
             <div className="form-group">
               <label>Correo electrónico</label>
               <input
@@ -157,7 +132,6 @@ const CustomersRegister = () => {
                 required
               />
             </div>
-
             <div className="form-group">
               <label>Contraseña</label>
               <input
@@ -168,8 +142,40 @@ const CustomersRegister = () => {
                 required
               />
             </div>
+            <div className="form-group">
+              <label>Teléfono</label>
+              <input
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="9876-5432"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Rol</label>
+              <input
+                type="tel"
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+                placeholder="Administrador"
+                required
+              />
+            </div>
+          
 
-            <button type="submit" className="save-btn">
+            <div className="form-group">
+              <label>Salario</label>
+              <input
+                type="Number"
+                value={salary}
+                onChange={(e) => setSalary(e.target.value)}
+                placeholder="200.00"
+                required
+              />
+            </div>
+
+              <button type="submit" className="save-btn">
               Guardar
             </button>
           </form>

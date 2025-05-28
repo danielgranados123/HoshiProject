@@ -18,6 +18,8 @@ import Sales from "./pages/Sales/Sales.jsx";
 import SalesRegister from "./pages/SalesRegister/SalesRegister.jsx";
 import Customers from "./pages/Customers/Customers.jsx";
 import CustomersRegister from "./pages/CustomersRegister/CustomersRegister.jsx";
+import Employees from "./pages/Employees/Employees.jsx"
+import EmployeesRegister from "./pages/EmployeesResgister/EmployeesRegister.jsx"
 
 
 import Nav from './components/Navigation/Nav';
@@ -73,6 +75,10 @@ export default function AppRoutes() {
         <Route path='/SalesRegister' element={<SalesRegister />} />
         <Route path='/Customers' element={<Customers />} />
         <Route path='/CustomersRegister' element={<CustomersRegister />} />
+        <Route path='/EmployeesRegister' element={<EmployeesRegister />} />
+        <Route path='/Employees' element={<Employees />} />
+
+
 
       </Routes>
       {!shouldHideLayout && <Footer />}

@@ -1,8 +1,6 @@
-/* CustomersRegister.css */
-/* Importa el sidebar y hamburger de Sales */
 @import "../Sales/Sales.css";
 
-/* Ajustes del contenedor principal */
+
 .main-content.register-content {
   flex-grow: 1;
   background: #f9f9f9;

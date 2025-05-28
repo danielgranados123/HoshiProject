@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "../Employees/Employees.css"; // Ruta actualizada
+import "../Employees/Employees.css"; 
+import "../../components/Employees/ListEmployees"
+import "../../components/Employees/hooks/useDataEmployees"
 import {
   FaHome,
   FaShoppingCart,
@@ -13,16 +15,7 @@ import {
 import Logo from "../../assets/logo.svg";
 
 const employeesData = [
-  { name: "Laura Martínez" },
-  { name: "Carlos López" },
-  { name: "Ana Torres" },
-  { name: "Roberto Gómez" },
-  { name: "Gabriela Ruiz" },
-  { name: "Pedro Sánchez" },
-  { name: "Lucía Fernández" },
-  { name: "Marcos Herrera" },
-  { name: "Claudia Rivera" },
-  { name: "José Ramírez" }
+
 ];
 
 const Employees = () => {

@@ -10,7 +10,7 @@ export default function useCustomers() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("/api/customers")
+      const res = await fetch("/api/customers");
       if (!res.ok) throw new Error("Error al cargar clientes");
       const data = await res.json();
       setCustomers(data);

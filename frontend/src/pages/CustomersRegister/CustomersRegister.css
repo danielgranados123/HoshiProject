@@ -1,0 +1,124 @@
+/* CustomersRegister.css */
+/* Importa el sidebar y hamburger de Sales */
+@import "../Sales/Sales.css";
+
+/* Ajustes del contenedor principal */
+.main-content.register-content {
+  flex-grow: 1;
+  background: #f9f9f9;
+  padding: 80px 0;
+  overflow-y: auto;
+}
+
+/* Header de registro */
+.register-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 3.92%;
+  width: 90%;
+  margin: 0 auto 2rem;
+}
+
+.register-header .back-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #000;
+  display: flex;
+  align-items: center;
+  margin-top: 2.1%;
+}
+
+.register-header .title-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-header h1 {
+  margin: 0;
+  font-size: 75px;
+  font-weight: bold;
+}
+
+.register-header .sub-title {
+  font-size: 2rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+/* Grid contenedor */
+.register-grid {
+  width: 82%;
+  margin: 0 auto;
+}
+
+/* Formulario grid: 2 columnas x 3 filas */
+.register-form {
+  background: #fff;
+  border-radius: 10px;
+  padding: 2rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: auto;
+  grid-gap: 2rem;
+}
+
+/* Form-group: alinear labels e inputs al tope y al fondo */
+.register-form .form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0; /* elimina el margin-bottom para usar grid-gap */
+}
+
+/* Labels con punto rojo */
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  position: relative;
+  font-size: 120%;
+}
+
+.form-group label::before {
+  content: "•";
+  color: #d50000;
+  position: absolute;
+  left: -1rem;
+  top: 0;
+}
+
+/* Inputs estilo “grayed-out” */
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #ebebeb;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+/* Oculta controles de más (no usados aquí) */
+.input-plus,
+.plus-btn {
+  display: none;
+}
+
+/* Botón guardar abarcará ambas columnas */
+.save-btn {
+  grid-column: 1 / -1;
+  justify-self: center;
+  margin-top: 1rem;
+  width: 85%;
+  padding: 1rem;
+  background: #d50000;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}

@@ -16,6 +16,8 @@ import Recoverypass2 from "./pages/RecoveyPassword2/Recoveypass2.jsx";
 import Recoverypass3 from "./pages/RecoveryPassword3/Recoverypass3.jsx";
 import Sales from "./pages/Sales/Sales.jsx";
 import SalesRegister from "./pages/SalesRegister/SalesRegister.jsx";
+import Customers from "./pages/Customers/Customers.jsx";
+import CustomersRegister from "./pages/CustomersRegister/CustomersRegister.jsx";
 
 
 import Nav from './components/Navigation/Nav';
@@ -46,7 +48,7 @@ function SplashScreenWrapper() {
 
 export default function AppRoutes() {
   const location = useLocation();
-  const hideLayoutRoutes = ['/Sales', '/SalesRegister'];
+  const hideLayoutRoutes = ['/Sales', '/SalesRegister', '/Customers', '/CustomersRegister'];
   const shouldHideLayout = hideLayoutRoutes.includes(location.pathname);
 
   return (
@@ -69,6 +71,8 @@ export default function AppRoutes() {
         <Route path='/Recoverypass3' element={<Recoverypass3 />} />
         <Route path='/Sales' element={<Sales />} />
         <Route path='/SalesRegister' element={<SalesRegister />} />
+        <Route path='/Customers' element={<Customers />} />
+        <Route path='/CustomersRegister' element={<CustomersRegister />} />
 
       </Routes>
       {!shouldHideLayout && <Footer />}

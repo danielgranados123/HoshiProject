@@ -1,0 +1,269 @@
+.employees-page .container {
+  display: flex;
+  font-family: 'Segoe UI', sans-serif;
+  height: 100vh;
+}
+
+.employees-page .hamburger {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1100;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.employees-page .sidebar {
+  width: 250px;
+  background-color: #f3f3f3;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.employees-page .logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.employees-page .logo {
+  width: 40px;
+}
+
+.employees-page .sidebar nav ul,
+.employees-page .sidebar .bottom-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.employees-page .sidebar nav ul li,
+.employees-page .sidebar .bottom-section ul li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 15px 0;
+  cursor: pointer;
+}
+
+.employees-page .sidebar nav ul li.active {
+  font-weight: bold;
+}
+
+.employees-page .bottom-section .greeting {
+  margin: 20px 0;
+}
+
+.employees-page .bottom-section .time {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.employees-page .main-content {
+  flex-grow: 1;
+  padding: 80px 0;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.employees-page .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 80%;
+  margin-bottom: 20px;
+}
+
+.employees-page .search-add-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-grow: 1;
+  justify-content: flex-end;
+}
+
+.employees-page .search-input {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 320px;
+  font-size: 16px;
+}
+
+.employees-page .add-button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  font-size: 28px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.employees-page .add-button:hover {
+  background-color: #222;
+}
+
+.employees-page .employees-section {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+.employees-page .employees-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  font-weight: bold;
+  padding: 1rem;
+  background-color: #e0e0e0;
+  border-radius: 10px 10px 0 0;
+  height: 60px;
+}
+
+.employees-page .employees-header span:nth-child(1) {
+  justify-self: start;
+  padding-left: 1.5rem;
+}
+
+.employees-page .employees-header span:nth-child(2) {
+  justify-self: end;
+  padding-right: 1rem;
+}
+
+.employees-page .employees-scroll {
+  width: 100%;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.employees-page .employees-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.employees-page .employees-scroll::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+
+.employees-page .employees-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.employees-page .employee-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  background-color: #fff;
+  padding: 2%;
+  margin-bottom: 6px;
+  font-size: 15px;
+  height: 80px;
+  border-radius: 10px;
+}
+
+.employees-page .employee-item:nth-child(even) {
+  background-color: #f1f1f1;
+}
+
+.employees-page .employee-name {
+  justify-self: start;
+  padding-left: 1rem;
+}
+
+.employees-page .options {
+  justify-self: end;
+  padding-right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+@media (max-width: 769px) {
+  .employees-page .hamburger {
+    display: block;
+  }
+  .employees-page .sidebar {
+    position: fixed;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f3f3f3;
+    transition: top 0.3s ease;
+    z-index: 1000;
+  }
+  .employees-page .sidebar.open {
+    top: 0;
+  }
+  .employees-page .bottom-section {
+    display: none;
+  }
+  .employees-page .logo-container {
+    margin-top: 3rem;
+  }
+  .employees-page .sidebar.open nav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .employees-page .sidebar.open nav ul li {
+    margin: 1rem 0;
+    font-size: 1.1rem;
+  }
+  .employees-page .employees-header {
+    display: none;
+  }
+  .employees-page .employee-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    height: auto;
+  }
+  .employees-page .employee-item:nth-child(even) {
+    background-color: #f1f1f1;
+  }
+  .employees-page .employee-name::before {
+    content: "Empleado: ";
+    font-weight: bold;
+  }
+  .employees-page .employee-name,
+  .employees-page .options {
+    margin-bottom: 0.5rem;
+  }
+  .employees-page .options {
+    align-self: flex-end;
+    padding-left: 0;
+  }
+  .employees-page .search-add-container {
+    width: 100%;
+  }
+  .employees-page .search-input {
+    width: 100%;
+  }
+}

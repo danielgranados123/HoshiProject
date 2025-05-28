@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../Employees/Employees.css"; 
-import "../../components/Employees/ListEmployees"
+import ListEmployees from "../../components/Employees/ListEmployees"
 import "../../components/Employees/hooks/useDataEmployees"
 import {
   FaHome,
@@ -88,6 +88,7 @@ const Employees = () => {
               </ul>
             </div>
           </section>
+          <ListEmployees />
         </main>
       </div>
     </div>

@@ -14,7 +14,6 @@ const useDataEmployees = () => {
   const [phone, setPhone] = useState("");
   const [role, setRole] = useState("");
   const [salary, setSalary] = useState("");
-  const [IdBranch, setIdBranch] = useState("");
   const [errorEmpleado, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -35,7 +34,7 @@ const useDataEmployees = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!name || !LastName || !email || !password || !phone || !role || !salary || !IdBranch) {
+    if (!name || !LastName || !email || !password || !phone || !role || !salary ) {
       setError("Todos los campos son obligatorios");
       toast.error("Todos los campos son obligatorios");
       return;
@@ -50,7 +49,7 @@ const useDataEmployees = () => {
         phone,
         role,
         salary,
-        IdBranch,
+     
       };
 
       const response = await fetch(ApiRegister, {
@@ -125,7 +124,6 @@ const useDataEmployees = () => {
     setPhone(dataEmployee.phone);
     setRole(dataEmployee.role);
     setSalary(dataEmployee.salary);
-    setIdBranch(dataEmployee.IdBranch);
     setError(null);
     setSuccess(null);
     setActiveTab("form");
@@ -143,7 +141,7 @@ const useDataEmployees = () => {
         phone,
         role,
         salary,
-        IdBranch,
+
       };
 
       const response = await fetch(`${ApiEmployees}/${id}`, {
@@ -192,8 +190,6 @@ const useDataEmployees = () => {
     setRole,
     salary,
     setSalary,
-    IdBranch,
-    setIdBranch,
     errorEmpleado,
     setError,
     success,

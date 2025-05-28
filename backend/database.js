@@ -1,31 +1,26 @@
+// backend/database.js
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-
 dotenv.config();
 
-import { config } from "./src/config.js"
+import { config } from "./src/config.js";
 
-// 1- Configuro la URI o direccion de la base de datos
-// const URI = 
+// 1. Conectar a MongoDB
+mongoose
+  .connect(config.db.URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => console.log("DB is connected"))
+  .catch((err) => console.error("DB connection error:", err));
 
-// 2- Conecto la base de datos
-mongoose.connect(config.db.URI);
+// 2. Escuchar eventos de la conexión
+const connection = mongoose.connection;
 
-// Comprobar todo
-// 3- Creo una constante que es igual a la conexión
-const connection =  mongoose.connection;
-
-//Veo si funciona
-connection.once("open", () => {
-    console.log("DB is connected");
-});
-
-//Veo si se desconectó
 connection.on("disconnected", () => {
-    console.log("DB is disconnected");
+  console.log("DB is disconnected");
 });
 
-//Veo si hay un error
-connection.once("error", () => {
-    console.log("error found" + error);
+connection.on("error", (err) => {
+  console.error("DB error:", err);
 });

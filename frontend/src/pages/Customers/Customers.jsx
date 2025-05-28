@@ -1,6 +1,8 @@
+// src/components/Customers/Customers.jsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "../Customers/Customers.css";
+import useCustomers from "../../components/Customers/hooks/useCustomers";
+import "./Customers.css";
 import {
   FaHome,
   FaShoppingCart,
@@ -12,24 +14,12 @@ import {
 } from "react-icons/fa";
 import Logo from "../../assets/logo.svg";
 
-const customersData = [
-  { name: "Ricardo de Paz" },
-  { name: "Emerson González" },
-  { name: "Mirna Espinoza" },
-  { name: "Daniel Hernández" },
-  { name: "Bryan Rodríguez" },
-  { name: "Eduardo Cornejo" },
-  { name: "Alexander Gáldamez" },
-  { name: "Isaac Cañas" },
-  { name: "Juan Pérez" },
-  { name: "José Martínez" }
-];
-
-const Customers = () => {
+export default function Customers() {
   const navigate = useNavigate();
+  const { customers, loading, error } = useCustomers();
 
   return (
-    <div className="customers-page">    {/* Scope único */}
+    <div className="customers-page">
       <div className="container">
         {/* Sidebar */}
         <aside className="sidebar">
@@ -71,7 +61,6 @@ const Customers = () => {
               />
               <button
                 className="add-button"
-                title="Agregar cliente"
                 onClick={() => navigate("/CustomersRegister")}
               >
                 ＋
@@ -85,20 +74,22 @@ const Customers = () => {
               <span></span>
             </div>
             <div className="customers-scroll">
-              <ul className="customers-list">
-                {customersData.map((c, idx) => (
-                  <li key={idx} className="customer-item">
-                    <div className="customer-name">{c.name}</div>
-                    <span className="options">⋮</span>
-                  </li>
-                ))}
-              </ul>
+              {loading && <p>Cargando clientes…</p>}
+              {error && <p style={{ color: "red" }}>{error}</p>}
+              {!loading && !error && (
+                <ul className="customers-list">
+                  {customers.map((c) => (
+                    <li key={c._id} className="customer-item">
+                      <div className="customer-name">{c.name}</div>
+                      <span className="options">⋮</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           </section>
         </main>
       </div>
     </div>
   );
-};
-
-export default Customers;
+}

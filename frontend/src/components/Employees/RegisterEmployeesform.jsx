@@ -1,65 +1,64 @@
-import React, { useState } from "react";
+import React from "react";
 import useDataEmployees from "./hooks/useDataEmployees.jsx";
-import "../../pages/EmployeesResgister/EmployeesRegister.jsx";
 
-export default function RegisterEmployeesfrom({ onSuccess, loading }) {
- 
-
-  const [form, setForm] = useState({
-    name: "",
-    lastname: "",
-    salary: "",
-    email: "",
-    phone: "",
-    role: "",
-    password: ""
-  });
-
-  const onChange = (e) =>
-    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+export default function RegisterEmployeesfrom({ onSuccess }) {
+  const {
+    name, setName,
+    LastName, setLastName,
+    email, setEmail,
+    password, setPassword,
+    phone, setPhone,
+    role, setRole,
+    salary, setSalary,
+    handleSubmit,
+    loading,
+    errorEmpleado,
+    success,
+  } = useDataEmployees();
 
   const onSubmit = async (e) => {
-    e.preventDefault();
-    const ok = await register(form);
-    if (ok) {
-      if(onSuccess) onSuccess();
-    } else {
-      alert(error || "Error desconocido");
+    await handleSubmit(e); // el hook ya maneja e.preventDefault()
+
+    // si quieres manejar un callback externo cuando se registre
+    if (success && onSuccess) {
+      onSuccess();
     }
   };
 
   return (
-   
-    <form className="max-w-lg mx-auto p-4 bg-white shadow-md rounded mb-5" onSubmit={onSubmit}>
-      
-
+    <form
+      className="max-w-lg mx-auto p-4 bg-white shadow-md rounded mb-5"
+      onSubmit={onSubmit}
+    >
       <div className="form-group">
         <label>Nombres</label>
         <input
           name="name"
-          value={form.name}
-          onChange={onChange}
-          placeholder="Wilfredo Granados"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Wilfredo"
           required
         />
       </div>
+
       <div className="form-group">
         <label>Apellidos</label>
         <input
-          name="lastname"
-          value={form.lastname}
-          onChange={onChange}
-          placeholder="Wilfredo Granados"
+          name="LastName"
+          value={LastName}
+          onChange={(e) => setLastName(e.target.value)}
+          placeholder="Granados"
           required
         />
       </div>
+
       <div className="form-group">
         <label>Correo electrónico</label>
         <input
           name="email"
           type="email"
-          value={form.email}
-          onChange={onChange}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           placeholder="wilf@gmail.com"
           required
         />
@@ -69,8 +68,8 @@ export default function RegisterEmployeesfrom({ onSuccess, loading }) {
         <label>Teléfono</label>
         <input
           name="phone"
-          value={form.phone}
-          onChange={onChange}
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
           placeholder="9876-5432"
           required
         />
@@ -80,50 +79,43 @@ export default function RegisterEmployeesfrom({ onSuccess, loading }) {
         <label>Rol</label>
         <input
           name="role"
-          value={form.role}
-          onChange={onChange}
-          placeholder="12345678-9"
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
+          placeholder="Administrador"
           required
         />
       </div>
 
       <div className="form-group">
-        <label>Salary</label>
+        <label>Salario</label>
         <input
           name="salary"
-          value={form.salary}
-          onChange={onChange}
+          value={salary}
+          onChange={(e) => setSalary(e.target.value)}
           placeholder="600"
           required
         />
       </div>
-
-
 
       <div className="form-group">
         <label>Contraseña</label>
         <input
           name="password"
           type="password"
-          value={form.password}
-          onChange={onChange}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           placeholder="••••••••"
           required
         />
       </div>
-        
-      
-     
-      <button
-        type="submit"
-        className="save-btn"
-        disabled={loading}
-      >
+
+      {errorEmpleado && (
+        <p className="text-red-500 mt-2">{errorEmpleado}</p>
+      )}
+
+      <button type="submit" className="save-btn" disabled={loading}>
         {loading ? "Guardando…" : "Guardar"}
       </button>
-      
     </form>
   );
-};
-
-
+}

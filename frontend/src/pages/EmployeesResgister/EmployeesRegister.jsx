@@ -21,7 +21,7 @@ import Logo from "../../assets/logo.svg";
 import useDataEmployees from "../../components/Employees/hooks/useDataEmployees";
 
 export default function RegisterEmployeees() {
-  const { register, loading, error } = useDataEmployees();
+  const { loading  } = useDataEmployees();
 
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
@@ -93,14 +93,7 @@ export default function RegisterEmployeees() {
           />
         </div>
 
-            <button
-        type="submit"
-        className="save-btn"
-        disabled={loading}
-      >
-        {loading ? "Guardando…" : "Guardar"}
-      </button>
-          
+           
       
       </main>
     </div>

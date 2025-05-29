@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import toast from "react-hot-toast";
+import toast, {Toaster} from 'react-hot-toast';
 
 const useDataEmployees = () => {
   const ApiRegister = "http://localhost:4000/api/registerEmployees";
@@ -27,14 +27,21 @@ const useDataEmployees = () => {
     setPhone("");
     setRole("");
     setSalary("");
-    setIdBranch("");
     setId("");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!name || !LastName || !email || !password || !phone || !role || !salary ) {
+    if (
+      !name ||
+      !LastName ||
+      !email ||
+      !password ||
+      !phone ||
+      !role ||
+      !salary
+    ) {
       setError("Todos los campos son obligatorios");
       toast.error("Todos los campos son obligatorios");
       return;
@@ -49,16 +56,17 @@ const useDataEmployees = () => {
         phone,
         role,
         salary,
-     
       };
 
-      const response = await fetch(ApiRegister, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newEmployee),
-      });
+     console.log(newEmployee, "datos nuevo empleado");
+    
+          const response = await fetch(ApiRegister, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newEmployee),
+          });
 
       if (!response.ok) {
         throw new Error("Hubo un error al registrar el empleado");
@@ -73,6 +81,7 @@ const useDataEmployees = () => {
     } catch (error) {
       setError(error.message);
       console.error("Error:", error);
+       alert("Error", "Ocurrió un error al registrar el empleado");
       toast.error("Ocurrió un error al registrar el empleado");
     } finally {
       setLoading(false);
@@ -86,6 +95,7 @@ const useDataEmployees = () => {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
+      console.log(data)
       setEmployees(data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -108,7 +118,7 @@ const useDataEmployees = () => {
         throw new Error("Failed to delete employee");
       }
 
-      const result = await response.json();
+      await response.json();
       toast.success("Empleado eliminado");
       fetchData();
     } catch (error) {
@@ -119,7 +129,7 @@ const useDataEmployees = () => {
   const updateEmployee = (dataEmployee) => {
     setId(dataEmployee._id);
     setName(dataEmployee.name);
-    setLastName(dataEmployee.LastName);
+    setLastName(dataEmployee.lastName);
     setEmail(dataEmployee.email);
     setPhone(dataEmployee.phone);
     setRole(dataEmployee.role);
@@ -141,7 +151,6 @@ const useDataEmployees = () => {
         phone,
         role,
         salary,
-
       };
 
       const response = await fetch(`${ApiEmployees}/${id}`, {

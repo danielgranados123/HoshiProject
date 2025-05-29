@@ -4,15 +4,15 @@ import employeesModel from "../models/Employees.js"
 
 // SELECT
 employeesController.getEmployees = async (req, res) => {
-    const customers = await employeesModel.find()
-    res.json(customers)
+    const employee = await employeesModel.find()
+    res.json(employee)
 };
 
 // INSERT
-employeesController.createCustomers = async (req, res) => {
-    const { name, lastName, email, phone, role, salary, IdBranch } = req.body;
-    const newCustomer = new employeesModel({ name, lastName, email, phone, role, salary, IdBranch });
-    await newCustomer.save()
+employeesController.createEmployees = async (req, res) => {
+    const { name, lastName, email, phone, role, salary,  } = req.body;
+    const newEmployee = new employeesModel({ name, lastName, email, phone, role, salary,  });
+    await newEmployee.save()
     res.json({ message: "Employees saved"})
 };
 

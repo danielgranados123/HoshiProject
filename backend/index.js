@@ -8,6 +8,7 @@ import "./database.js";
 import express from "express";
 import cors from "cors";
 import customersRoutes from "./src/routes/customers.js";
+import EmployeesRoutes from "./src/routes/employees.js";
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use(
 
 // Rutas de customers
 app.use("/api/customers", customersRoutes);
+app.use("/api/employees", EmployeesRoutes)
 
 // Ruta base
 app.get("/", (req, res) => {

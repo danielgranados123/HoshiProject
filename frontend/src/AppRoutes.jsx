@@ -51,6 +51,7 @@ function SplashScreenWrapper() {
 export default function AppRoutes() {
   const location = useLocation();
   const hideLayoutRoutes = ['/Sales', '/SalesRegister', '/Customers', '/CustomersRegister'];
+  
   const shouldHideLayout = hideLayoutRoutes.includes(location.pathname);
 
   return (

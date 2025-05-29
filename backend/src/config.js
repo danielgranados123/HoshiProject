@@ -7,7 +7,7 @@ dotenv.config();
 export const config = {
     db: {
         URI: 
-            process.env.DB_URI || "mongodb://localhost:27017/ZonaDigitalDB20200008",
+            process.env.DB_URI || "mongodb+srv://danielgranados008:Danielgranados123@cluster2a.bugmr.mongodb.net/HoshiDB",
 
     },
     server: {

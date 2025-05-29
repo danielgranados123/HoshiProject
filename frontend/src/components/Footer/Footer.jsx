@@ -34,9 +34,9 @@ const Footer = () => {
                 </div>
             </div>
             <div className="content3">
-                <div class="form-container">
+                <div className="form-container">
                 <input type="text" className="input-field" placeholder="Escribe algo..." />
-                <button class="submit-button">
+                <button className="submit-button">
                     Empezar chat<IoMdSend className="social-icon-2" /> 
                 </button>
             </div>

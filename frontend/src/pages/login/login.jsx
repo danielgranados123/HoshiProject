@@ -7,15 +7,16 @@ import { Toaster, toast } from "react-hot-toast";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
   const navigate = useNavigate();
 
   // Simulación simple de login sin contexto
   const fakeLogin = async (email, password) => {
-    // Simula llamada API o validación
     return new Promise((resolve) => {
       setTimeout(() => {
-        if (email === "admin@demo.com" && password === "123456") {
-          resolve({ success: true, user: { email, name: "Admin Demo" } });
+        if (email === "daniel@gmail.com" && password === "20200008") {
+          resolve({ success: true, user: { email, name: "Daniel" } });
         } else {
           resolve({ success: false, message: "Credenciales incorrectas" });
         }
@@ -26,8 +27,13 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setEmailError(false);
+    setPasswordError(false);
+
     if (!email || !password) {
       toast.error("Por favor, complete todos los campos.");
+      if (!email) setEmailError(true);
+      if (!password) setPasswordError(true);
       return;
     }
 
@@ -41,13 +47,15 @@ const Login = () => {
     // Guardar token o info en localStorage
     localStorage.setItem("authToken", "fakeToken123");
     toast.success("Inicio de sesión exitoso.");
-    navigate("/");
+    navigate("/Customers");
   };
 
   useEffect(() => {
-    const miCookie = localStorage.getItem("authToken");
-    console.log(miCookie, "cookie desde el login useEffect");
-  }, []);
+    const authToken = localStorage.getItem("authToken");
+    if (authToken) {
+      navigate("/Customers");
+    }
+  }, [navigate]);
 
   return (
     <div className="login-container">
@@ -60,23 +68,27 @@ const Login = () => {
         <p className="subtitle">Ingresa tus credenciales</p>
 
         <form onSubmit={handleSubmit}>
-          <label>
+          <label htmlFor="email">
             <span className="bullet">●</span> Correo electrónico:
             <input
+              id="email"
               type="text"
               placeholder="correo@ejemplo.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className={emailError ? 'input-error' : ''}
             />
           </label>
 
-          <label>
+          <label htmlFor="password">
             <span className="bullet">●</span> Contraseña:
             <input
+              id="password"
               type="password"
               placeholder="************"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              className={passwordError ? 'input-error' : ''}
             />
           </label>
 

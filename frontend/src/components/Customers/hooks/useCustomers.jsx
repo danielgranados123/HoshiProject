@@ -21,9 +21,24 @@ export default function useCustomers() {
     }
   }, []);
 
+  const deleteCustomer = useCallback(
+    async (id) => {
+      if (!window.confirm("¿Seguro que quieres eliminar este cliente?")) return;
+      try {
+        const res = await fetch(`/api/customers/${id}`, { method: "DELETE" });
+        if (!res.ok) throw new Error("Error al eliminar cliente");
+        await fetchCustomers();
+      } catch (err) {
+        console.error(err);
+        alert(err.message || "No se pudo eliminar el cliente");
+      }
+    },
+    [fetchCustomers]
+  );
+
   useEffect(() => {
     fetchCustomers();
   }, [fetchCustomers]);
 
-  return { customers, loading, error, refetch: fetchCustomers };
+  return { customers, loading, error, refetch: fetchCustomers, deleteCustomer };
 }

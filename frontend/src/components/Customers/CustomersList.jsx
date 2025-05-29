@@ -1,10 +1,16 @@
-// src/components/Customers/CustomersList.jsx
+// src/components/Customers/customersList.jsx
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { FaTrashAlt, FaEdit } from "react-icons/fa";
 import useCustomers from "./hooks/useCustomers";
 import "../../pages/Customers/Customers.css";
 
 export default function CustomersList() {
-  const { customers, loading, error } = useCustomers();
+  const navigate = useNavigate();
+  const { customers, loading, error, deleteCustomer } = useCustomers();
+
+  if (loading) return <p>Cargando clientes…</p>;
+  if (error)   return <p>Error: {error}</p>;
 
   return (
     <section className="customers-section">
@@ -13,18 +19,27 @@ export default function CustomersList() {
         <span></span>
       </div>
       <div className="customers-scroll">
-        {loading && <p>Cargando clientes…</p>}
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        {!loading && !error && (
-          <ul className="customers-list">
-            {customers.map((c) => (
-              <li key={c._id} className="customer-item">
-                <div className="customer-name">{c.name}</div>
-                <span className="options">⋮</span>
-              </li>
-            ))}
-          </ul>
-        )}
+        <ul className="customers-list">
+          {customers.map((c) => (
+            <li key={c._id} className="customer-item">
+              <div className="customer-name">{c.name}</div>
+              <div className="options">
+                {/* EDITAR en negro */}
+                <FaEdit
+                  color="#000"
+                  style={{ marginRight: "0.5rem", cursor: "pointer" }}
+                  onClick={() => navigate(`/CustomersEdit/${c._id}`)}
+                />
+                {/* BORRAR */}
+                <FaTrashAlt
+                  color="red"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => deleteCustomer(c._id)}
+                />
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

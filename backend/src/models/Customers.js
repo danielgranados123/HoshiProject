@@ -18,6 +18,11 @@ const customerSchema =  new Schema({
     lastName: {
         type: String
     },
+    dni: { 
+        type: String, 
+        required: true, 
+        unique: true 
+    },
     email: {
         type: String,
         require: true

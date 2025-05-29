@@ -1,4 +1,5 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
+// src/AppRoutes.jsx
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import Home from './pages/Home/Home.jsx';
@@ -18,9 +19,9 @@ import Sales from "./pages/Sales/Sales.jsx";
 import SalesRegister from "./pages/SalesRegister/SalesRegister.jsx";
 import Customers from "./pages/Customers/Customers.jsx";
 import CustomersRegister from "./pages/CustomersRegister/CustomersRegister.jsx";
-import Employees from "./pages/Employees/Employees.jsx"
-import EmployeesRegister from "./pages/EmployeesResgister/EmployeesRegister.jsx"
-
+import CustomersEdit from "./pages/CustomersEdit/CustomersEdit.jsx";
+import Employees from "./pages/Employees/Employees.jsx";
+import EmployeesRegister from "./pages/EmployeesResgister/EmployeesRegister.jsx";
 
 import Nav from './components/Navigation/Nav';
 import Footer from './components/Footer/Footer.jsx';
@@ -32,9 +33,7 @@ function SplashScreenWrapper() {
 
   useEffect(() => {
     if (location.pathname === '/') {
-      const timer = setTimeout(() => {
-        setLoading(false);
-      }, 1100);
+      const timer = setTimeout(() => setLoading(false), 1100);
       return () => clearTimeout(timer);
     } else {
       setLoading(false);
@@ -44,15 +43,23 @@ function SplashScreenWrapper() {
   if (loading && location.pathname === '/') {
     return <SplashScreen onFinish={() => setLoading(false)} />;
   }
-
   return null;
 }
 
 export default function AppRoutes() {
   const location = useLocation();
-  const hideLayoutRoutes = ['/Sales', '/SalesRegister', '/Customers', '/CustomersRegister'];
-  
-  const shouldHideLayout = hideLayoutRoutes.includes(location.pathname);
+
+  // Oculta Nav/Footer en rutas de Sales y Customers (incluyendo edición)
+  const hideLayoutPrefixes = [
+    '/Sales',
+    '/SalesRegister',
+    '/Customers',
+    '/CustomersRegister',
+    '/CustomersEdit'
+  ];
+  const shouldHideLayout = hideLayoutPrefixes.some(prefix =>
+    location.pathname.startsWith(prefix)
+  );
 
   return (
     <>
@@ -61,26 +68,24 @@ export default function AppRoutes() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path='/contact' element={<Contact />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/catalog" element={<Catalog />} />
-        <Route path='/account' element={<Account />} />
-        <Route path='/terms' element={<Terms />} />
-        <Route path='/purchaseHistory' element={<PurchaseHistory />} />
-        <Route path='/carInformation' element={<CarInformation />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/recovery' element={<RecoveryPassword />} />
-        <Route path='/Recoverypass2' element={<Recoverypass2 />} />
-        <Route path='/Recoverypass3' element={<Recoverypass3 />} />
-        <Route path='/Sales' element={<Sales />} />
-        <Route path='/SalesRegister' element={<SalesRegister />} />
-        <Route path='/Customers' element={<Customers />} />
-        <Route path='/CustomersRegister' element={<CustomersRegister />} />
-        <Route path='/EmployeesRegister' element={<EmployeesRegister />} />
-        <Route path='/Employees' element={<Employees />} />
-
-
-
+        <Route path="/account" element={<Account />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/purchaseHistory" element={<PurchaseHistory />} />
+        <Route path="/carInformation" element={<CarInformation />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/recovery" element={<RecoveryPassword />} />
+        <Route path="/Recoverypass2" element={<Recoverypass2 />} />
+        <Route path="/Recoverypass3" element={<Recoverypass3 />} />
+        <Route path="/Sales" element={<Sales />} />
+        <Route path="/SalesRegister" element={<SalesRegister />} />
+        <Route path="/Customers" element={<Customers />} />
+        <Route path="/CustomersRegister" element={<CustomersRegister />} />
+        <Route path='/CustomersEdit/:id' element={<CustomersEdit />} />
+        <Route path="/EmployeesRegister" element={<EmployeesRegister />} />
+        <Route path="/Employees" element={<Employees />} />
       </Routes>
       {!shouldHideLayout && <Footer />}
     </>

@@ -1,14 +1,18 @@
+// backend/src/routes/customers.js
 import express from "express";
 import customersController from "../controllers/customersController.js";
-// Router() nos ayuda a colocar los mètodos que tendrà mi ruta
+
 const router = express.Router();
 
-router.route("/")
-.get(customersController.getCustomers)
-.post(customersController.createCustomers) 
+router
+  .route("/")
+  .get(customersController.getCustomers)
+  .post(customersController.createCustomers);
 
-router.route("/:id")
-.put(customersController.updateCustomers)
-.delete(customersController.deleteCustomers)
+router
+  .route("/:id")
+  .get(customersController.getCustomerById)
+  .put(customersController.updateCustomers)
+  .delete(customersController.deleteCustomers);
 
 export default router;

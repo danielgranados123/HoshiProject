@@ -1,7 +1,7 @@
 // src/pages/Customers.jsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import CustomersList from "../../components/Customers/customersList";
+import CustomersList from "../../components/Customers/CustomersList";
 import "../Sales/Sales.css";
 import "../Customers/Customers.css";
 import {

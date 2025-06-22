@@ -2,7 +2,6 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-// Conecta a MongoDB (ajusta la ruta si database.js está en otra carpeta)
 import "./database.js";
 
 import express from "express";
@@ -35,5 +34,5 @@ app.get("/", (req, res) => {
 // Arranque del servidor
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
-  console.log(`🚀 Server running at http://localhost:${port}`);
+  console.log(`Server running at http://localhost:${port}`);
 });

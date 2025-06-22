@@ -16,7 +16,7 @@ import {
   FaSignOutAlt,
   FaBars,
   FaTimes,
-  FaArrowLeft
+  FaArrowLeft,
 } from "react-icons/fa";
 import Logo from "../../assets/logo.svg";
 
@@ -39,14 +39,15 @@ export default function CustomersEdit() {
         const res = await fetch(`/api/customers/${id}`);
         if (!res.ok) throw new Error("Error al cargar cliente");
         const data = await res.json();
-        setName(data.name || "");
-        setDni(data.dni || "");
-        setEmail(data.email || "");
-        setPhone(data.phone || "");
-        setUsername(data.username || "");
-      } catch (err) {
-        console.error(err);
-        alert(err.message);
+        setName(data.name ?? "");
+        setDni(data.dni ?? "");
+        setEmail(data.email ?? "");
+        setPhone(data.phone ?? "");
+        setUsername(data.username ?? "");
+        setPassword(data.password ?? "");
+      } catch (error) {
+        console.error(error);
+        alert(error.message);
       }
     })();
   }, [id]);
@@ -63,11 +64,11 @@ export default function CustomersEdit() {
           email,
           phone,
           username,
-          password
-        })
+          password,
+        }),
       });
       if (!res.ok) throw new Error("Error al actualizar cliente");
-      navigate("/Customers");
+      navigate("/customers");
     } catch (err) {
       console.error(err);
       alert(err.message);
@@ -107,13 +108,19 @@ export default function CustomersEdit() {
         </nav>
         <div className="bottom-section">
           <div className="greeting">
-            <p><strong>¡Buenos días, Bryan!</strong></p>
+            <p>
+              <strong>¡Buenos días, Bryan!</strong>
+            </p>
             <p>Miércoles 26 de febrero</p>
             <p className="time">9:45 a.m.</p>
           </div>
           <ul>
-            <li><FaCog /> Ajustes</li>
-            <li><FaSignOutAlt /> Salir</li>
+            <li>
+              <FaCog /> Ajustes
+            </li>
+            <li>
+              <FaSignOutAlt /> Salir
+            </li>
           </ul>
           <p className="copyright">©2025–Hoshi</p>
         </div>
@@ -122,7 +129,7 @@ export default function CustomersEdit() {
       {/* Main content */}
       <main className="main-content register-content">
         <header className="register-header">
-          <button className="back-btn" onClick={() => navigate("/Customers")}>
+          <button className="back-btn" onClick={() => navigate("/customers")}>
             <FaArrowLeft />
           </button>
           <div className="title-container">
@@ -144,7 +151,7 @@ export default function CustomersEdit() {
               <input
                 type="text"
                 value={name}
-                onChange={e => setName(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
                 required
               />
             </div>
@@ -154,7 +161,7 @@ export default function CustomersEdit() {
               <input
                 type="text"
                 value={dni}
-                onChange={e => setDni(e.target.value)}
+                onChange={(e) => setDni(e.target.value)}
                 required
               />
             </div>
@@ -164,7 +171,7 @@ export default function CustomersEdit() {
               <input
                 type="email"
                 value={email}
-                onChange={e => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
@@ -174,7 +181,7 @@ export default function CustomersEdit() {
               <input
                 type="tel"
                 value={phone}
-                onChange={e => setPhone(e.target.value)}
+                onChange={(e) => setPhone(e.target.value)}
                 required
               />
             </div>
@@ -184,7 +191,7 @@ export default function CustomersEdit() {
               <input
                 type="text"
                 value={username}
-                onChange={e => setUsername(e.target.value)}
+                onChange={(e) => setUsername(e.target.value)}
                 required
               />
             </div>
@@ -194,7 +201,7 @@ export default function CustomersEdit() {
               <input
                 type="password"
                 value={password}
-                onChange={e => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
 

@@ -28,7 +28,7 @@ export default function CustomersList() {
                 <FaEdit
                   color="#000"
                   style={{ marginRight: "0.5rem", cursor: "pointer" }}
-                  onClick={() => navigate(`/CustomersEdit/${c._id}`)}
+                  onClick={() => navigate(`/customersEdit/${c._id}`)}
                 />
                 {/* BORRAR */}
                 <FaTrashAlt

@@ -23,8 +23,8 @@ customersController.getCustomer = async (req, res) => {
 
 // CREATE
 customersController.createCustomers = async (req, res) => {
-  const { name, lastName, dni, email, phone, username, password } = req.body;
-  const newCustomer = new customersModel({ name, lastName, dni, email, phone, username, password });
+  const { name, dni, email, phone, username, password } = req.body;
+  const newCustomer = new customersModel({ name, dni, email, phone, username, password });
   await newCustomer.save();
   res.json({ message: "Customer saved" });
 };
@@ -33,10 +33,10 @@ customersController.createCustomers = async (req, res) => {
 customersController.updateCustomers = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, lastName, dni, email, phone, username, password } = req.body;
+    const { name, dni, email, phone, username, password } = req.body;
     const updated = await customersModel.findByIdAndUpdate(
       id,
-      { name, lastName, dni, email, phone, username, password },
+      { name, dni, email, phone, username, password },
       { new: true }
     );
     if (!updated) return res.status(404).json({ message: "Cliente no encontrado" });

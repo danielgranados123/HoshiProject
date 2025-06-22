@@ -51,11 +51,12 @@ export default function AppRoutes() {
 
   // Oculta Nav/Footer en rutas de Sales y Customers (incluyendo edición)
   const hideLayoutPrefixes = [
-    '/Sales',
-    '/SalesRegister',
-    '/Customers',
-    '/CustomersRegister',
-    '/CustomersEdit'
+    '/sales',
+    '/salesRegister',
+    '/customers',
+    '/customersRegister',
+    '/customersEdit',
+    '/login'
   ];
   const shouldHideLayout = hideLayoutPrefixes.some(prefix =>
     location.pathname.startsWith(prefix)
@@ -66,6 +67,7 @@ export default function AppRoutes() {
       <SplashScreenWrapper />
       {!shouldHideLayout && <Nav />}
       <Routes>
+        
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
@@ -77,15 +79,15 @@ export default function AppRoutes() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/recovery" element={<RecoveryPassword />} />
-        <Route path="/Recoverypass2" element={<Recoverypass2 />} />
-        <Route path="/Recoverypass3" element={<Recoverypass3 />} />
-        <Route path="/Sales" element={<Sales />} />
-        <Route path="/SalesRegister" element={<SalesRegister />} />
-        <Route path="/Customers" element={<Customers />} />
-        <Route path="/CustomersRegister" element={<CustomersRegister />} />
-        <Route path='/CustomersEdit/:id' element={<CustomersEdit />} />
-        <Route path="/EmployeesRegister" element={<EmployeesRegister />} />
-        <Route path="/Employees" element={<Employees />} />
+        <Route path="/recoverypass2" element={<Recoverypass2 />} />
+        <Route path="/recoverypass3" element={<Recoverypass3 />} />
+        <Route path="/sales" element={<Sales />} />
+        <Route path="/salesRegister" element={<SalesRegister />} />
+        <Route path="/customers" element={<Customers />} />
+        <Route path="/customersRegister" element={<CustomersRegister />} />
+        <Route path='/customersEdit/:id' element={<CustomersEdit />} />
+        <Route path="/employeesRegister" element={<EmployeesRegister />} />
+        <Route path="/employees" element={<Employees />} />
       </Routes>
       {!shouldHideLayout && <Footer />}
     </>

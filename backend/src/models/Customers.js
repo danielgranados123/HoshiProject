@@ -15,9 +15,6 @@ const customerSchema =  new Schema({
         type: String,
         require: true
     },
-    lastName: {
-        type: String
-    },
     dni: { 
         type: String, 
         required: true, 

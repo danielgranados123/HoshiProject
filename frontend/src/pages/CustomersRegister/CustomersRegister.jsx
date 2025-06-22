@@ -79,7 +79,7 @@ export default function CustomersRegister() {
         <header className="register-header">
           <button
             className="back-btn"
-            onClick={() => navigate("/Customers")}
+            onClick={() => navigate("/customers")}
           >
             <FaArrowLeft />
           </button>
@@ -92,7 +92,7 @@ export default function CustomersRegister() {
         {/* Register Form */}
         <div className="register-grid">
           <CustomersRegisterForm
-            onSuccess={() => navigate("/Customers")}
+            onSuccess={() => navigate("/customers")}
           />
         </div>
       </main>

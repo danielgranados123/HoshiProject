@@ -11,7 +11,7 @@ router
 
 router
   .route("/:id")
-  //.get(customersController.getCustomerById)
+  .get(customersController.getCustomer)
   .put(customersController.updateCustomers)
   .delete(customersController.deleteCustomers);
 

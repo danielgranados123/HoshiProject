@@ -1,4 +1,3 @@
-// src/components/Customers/hooks/useCustomers.jsx
 import { useState, useEffect, useCallback } from "react";
 
 export default function useCustomers() {

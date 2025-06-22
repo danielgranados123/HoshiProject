@@ -1,8 +1,5 @@
 // Importo todo lo de la libreria de Express
 import express from "express";
-import cors from "cors";
-
-
 import branchesRoutes from "./src/routes/branches.js"
 import brandsRoutes from "./src/routes/brands.js"
 import carsRoutes from "./src/routes/cars.js"
@@ -17,25 +14,11 @@ import chatsRoutes from "./src/routes/chats.js"
 import loginRoutes from "./src/routes/login.js"
 import logoutRoutes from "./src/routes/logout.js"
 
-import dotenv from "dotenv";
-
-dotenv.config();
-
-
 // Creo una constante que es igual a la liberia que importé
 const app = express();
 
 // Que acepte datos de json
 app.use(express.json());
-
-app.use(
-  cors({
-    origin: "http://localhost:5173", // Dominio del cliente
-    credentials: true, // Permitir envío de cookies y credenciales
-  })
-);
-
-app.use(cookieParser());
 
 // Definir las rutas de las funciones que tendrà la pàgina web
 app.use("/api/branches", branchesRoutes)

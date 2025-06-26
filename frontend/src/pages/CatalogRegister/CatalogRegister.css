@@ -1,0 +1,49 @@
+@import "../Sales/Sales.css";
+
+.main-content.register-content {
+  flex-grow: 1;
+  background: #f9f9f9;
+  padding: 80px 0;
+  overflow-y: auto;
+}
+
+.register-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 3.92%;
+  width: 90%;
+  margin: 0 auto 2rem;
+}
+
+.register-header .back-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #000;
+  display: flex;
+  align-items: center;
+  margin-top: 2.1%;
+}
+
+.register-header .title-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-header h1 {
+  margin: 0;
+  font-size: 75px;
+  font-weight: bold;
+}
+
+.register-header .sub-title {
+  font-size: 2rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+.register-grid {
+  width: 82%;
+  margin: 0 auto;
+}

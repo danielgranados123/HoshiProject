@@ -17,8 +17,7 @@ const customerSchema =  new Schema({
     },
     dni: { 
         type: String, 
-        required: true, 
-        unique: true 
+        required: true
     },
     email: {
         type: String,

@@ -1,6 +1,7 @@
 // src/pages/Customers/CustomersRegister.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import "../Sales/Sales.css";
 import "./EmployeeesRegister.css";
 import RegisterEmployeesform from "../../components/Employees/RegisterEmployeesform"
@@ -35,49 +36,11 @@ export default function RegisterEmployeees() {
         {menuOpen ? <FaTimes /> : <FaBars />}
       </button>
 
-      {/* Sidebar */}
-      <aside className={`sidebar ${menuOpen ? "open" : ""}`}>
-        <div className="logo-container">
-          <img src={Logo} alt="Logo" className="logo" />
-        </div>
-        <nav>
-          <ul>
-            <li onClick={() => navigate("/")}>
-              <FaHome /> Inicio
-            </li>
-            <li>
-              <FaShoppingCart /> Ventas
-            </li>
-            <li className="active">
-              <FaUser /> Clientes
-            </li>
-            <li>
-              <FaBox /> Catálogo
-            </li>
-            <li>
-              <FaUsersCog /> Empleados
-            </li>
-          </ul>
-        </nav>
-        <div className="bottom-section">
-          <div className="greeting">
-            <p><strong>¡Buenos días, Bryan!</strong></p>
-            <p>Miércoles 26 de febrero</p>
-            <p className="time">9:45 a.m.</p>
-          </div>
-          <ul>
-            <li><FaCog /> Ajustes</li>
-            <li><FaSignOutAlt /> Salir</li>
-          </ul>
-          <p className="copyright">©2025–Hoshi</p>
-        </div>
-      </aside>
-
       {/* Main content */}
       <main className="main-content register-content">
         {/* Header */}
         <header className="register-header">
-          <button className="back-btn" onClick={() => navigate("/Employees")}>
+          <button className="back-btn" onClick={() => navigate("/employees-private")}>
             <FaArrowLeft />
           </button>
           <div className="title-container">
@@ -89,12 +52,9 @@ export default function RegisterEmployeees() {
       
         <div className="register-grid">
           <RegisterEmployeesform loading={loading}
-            onSuccess={() => navigate("/Employees")}
+            onSuccess={() => navigate("/employees-private")}
           />
         </div>
-
-           
-      
       </main>
     </div>
   );

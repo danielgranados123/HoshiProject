@@ -1,0 +1,131 @@
+.register-car-section {
+  max-width: 1100px;
+  background-color: #fff;
+  border-radius: 12px;
+  font-family: 'Segoe UI', sans-serif;
+  padding: 40px 30px;
+  margin: 0 auto;
+}
+
+.register-car-title {
+  font-size: 34px;
+  font-weight: bold;
+  color: #b91c1c;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.register-car-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px 40px;
+  align-items: start;
+}
+
+/* Cada campo de input con label puntito rojo */
+.input-field,
+.file-upload,
+.checkbox-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-field label,
+.file-upload label,
+.checkbox-field label {
+  position: relative;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.input-field label::before,
+.file-upload label::before,
+.checkbox-field label::before {
+  content: "•";
+  color: #d50000;
+  position: absolute;
+  left: -18px;
+  top: 0;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.input-field input,
+.file-upload input {
+  padding: 14px 18px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 18px;
+  background-color: #fff;
+  color: #000;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-field input:focus,
+.file-upload input:focus {
+  outline: none;
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
+}
+
+/* Checkbox se muestra en fila y con label a la derecha */
+.checkbox-field {
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+  font-size: 17px;
+  color: #374151;
+  cursor: pointer;
+}
+
+.checkbox-field input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+/* Botones con estilo “save-btn” similar a tu referencia */
+.form-actions {
+  grid-column: 1 / -1; /* que ocupe las dos columnas */
+  margin-top: 50px;
+  text-align: center;
+}
+
+.form-actions button,
+.form-actions input[type="submit"] {
+  width: 85%;
+  padding: 1rem;
+  background: #d50000;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.form-actions button:hover,
+.form-actions input[type="submit"]:hover {
+  background: #a70000;
+}
+
+/* Responsive móvil: 1 columna */
+@media (max-width: 768px) {
+  .register-car-form {
+    grid-template-columns: 1fr;
+  }
+  
+  .input-field label::before,
+  .file-upload label::before,
+  .checkbox-field label::before {
+    left: -12px;
+  }
+  
+  .form-actions button,
+  .form-actions input[type="submit"] {
+    width: 100%;
+  }
+}

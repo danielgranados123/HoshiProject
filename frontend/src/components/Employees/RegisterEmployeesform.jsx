@@ -4,7 +4,7 @@ import useDataEmployees from "./hooks/useDataEmployees.jsx";
 export default function RegisterEmployeesfrom({ onSuccess }) {
   const {
     name, setName,
-    LastName, setLastName,
+    lastName, setLastName,
     email, setEmail,
     password, setPassword,
     phone, setPhone,
@@ -17,9 +17,8 @@ export default function RegisterEmployeesfrom({ onSuccess }) {
   } = useDataEmployees();
 
   const onSubmit = async (e) => {
-    await handleSubmit(e); // el hook ya maneja e.preventDefault()
+    await handleSubmit(e);
 
-    // si quieres manejar un callback externo cuando se registre
     if (success && onSuccess) {
       onSuccess();
     }
@@ -45,7 +44,7 @@ export default function RegisterEmployeesfrom({ onSuccess }) {
         <label>Apellidos</label>
         <input
           name="LastName"
-          value={LastName}
+          value={lastName}
           onChange={(e) => setLastName(e.target.value)}
           placeholder="Granados"
           required

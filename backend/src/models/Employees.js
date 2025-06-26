@@ -13,7 +13,7 @@ const employeesSchema =  new Schema({
         type: String,
         require: true
     },
-    LastName: {
+    lastName: {
         type: String,
         require: true
     },
@@ -38,12 +38,6 @@ const employeesSchema =  new Schema({
         type: Number,
         require: true,
         min: 0
-    
-    },
-    IdBranch: {
-        type: Schema.Types.ObjectId,
-      ref: "Branches",
-      
     
     }
 }, {

@@ -1,7 +1,10 @@
 // src/AppRoutes.jsx
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { Toaster } from "react-hot-toast";
+import { AuthProvider } from "./context/AuthContext";
 
+// Páginas
 import Home from './pages/Home/Home.jsx';
 import About from './pages/About/About.jsx';
 import Contact from './pages/Contact.jsx';
@@ -22,10 +25,18 @@ import CustomersRegister from "./pages/CustomersRegister/CustomersRegister.jsx";
 import CustomersEdit from "./pages/CustomersEdit/CustomersEdit.jsx";
 import Employees from "./pages/Employees/Employees.jsx";
 import EmployeesRegister from "./pages/EmployeesResgister/EmployeesRegister.jsx";
+import EmployeesEdit from './pages/EmployeesEdit/EmployeesEdit.jsx';
+import CatalogPrivate from "./pages/Catalog-Private/Catalog.jsx"
+import CatalogRegister from "./pages/CatalogRegister/CatalogRegister.jsx"
 
+// Layout
 import Nav from './components/Navigation/Nav';
+import PrivateNav from './components/PrivateNav/PrivateNav.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import SplashScreen from "./components/SplashScreen/LogoAnimation.jsx";
+
+// Protección
+import { PrivateRoute } from "./components/NavegationPrivate/PrivateRoute.jsx";
 
 function SplashScreenWrapper() {
   const [loading, setLoading] = useState(true);
@@ -49,15 +60,23 @@ function SplashScreenWrapper() {
 export default function AppRoutes() {
   const location = useLocation();
 
-  // Oculta Nav/Footer en rutas de Sales y Customers (incluyendo edición)
+  const noNavRoutes = ['/login', '/register'];
+
   const hideLayoutPrefixes = [
-    '/sales',
+    '/home-private',
+    '/sales-private',
+    '/employees-private',
+    '/employeesRegister',
+    '/employeesEdit',
     '/salesRegister',
-    '/customers',
+    '/customers-private',
     '/customersRegister',
     '/customersEdit',
-    '/login'
+    '/catalog-private',
+    '/catalogRegister'
   ];
+
+  const isNoNavRoute = noNavRoutes.includes(location.pathname);
   const shouldHideLayout = hideLayoutPrefixes.some(prefix =>
     location.pathname.startsWith(prefix)
   );
@@ -65,9 +84,11 @@ export default function AppRoutes() {
   return (
     <>
       <SplashScreenWrapper />
-      {!shouldHideLayout && <Nav />}
+      {!shouldHideLayout && !isNoNavRoute && <Nav />}
+      {shouldHideLayout && <PrivateNav />}
+
       <Routes>
-        
+        {/* Públicas */}
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
@@ -81,15 +102,24 @@ export default function AppRoutes() {
         <Route path="/recovery" element={<RecoveryPassword />} />
         <Route path="/recoverypass2" element={<Recoverypass2 />} />
         <Route path="/recoverypass3" element={<Recoverypass3 />} />
-        <Route path="/sales" element={<Sales />} />
-        <Route path="/salesRegister" element={<SalesRegister />} />
-        <Route path="/customers" element={<Customers />} />
-        <Route path="/customersRegister" element={<CustomersRegister />} />
-        <Route path='/customersEdit/:id' element={<CustomersEdit />} />
-        <Route path="/employeesRegister" element={<EmployeesRegister />} />
-        <Route path="/employees" element={<Employees />} />
+
+        {/* Privadas con protección */}
+
+          <Route path="/sales-private" element={<Sales />} />
+          <Route path="/salesRegister" element={<SalesRegister />} />
+          <Route path="/catalog-private" element={<CatalogPrivate />} />
+          <Route path="/catalogRegister" element={<CatalogRegister />} />
+          <Route path="/customers-private" element={<Customers />} />
+          <Route path="/customersRegister" element={<CustomersRegister />} />
+          <Route path="/customersEdit/:id" element={<CustomersEdit />} />
+          <Route path="/employees-private" element={<Employees />} />
+          <Route path="/employeesRegister" element={<EmployeesRegister />} />
+          <Route path="/employeesEdit/:id" element={<EmployeesEdit />} />
+
       </Routes>
-      {!shouldHideLayout && <Footer />}
+
+      {!shouldHideLayout && !isNoNavRoute && <Footer />}
+      <Toaster toastOptions={{ duration: 2000 }} />
     </>
   );
 }

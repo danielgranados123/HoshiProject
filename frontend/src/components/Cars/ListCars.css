@@ -1,0 +1,32 @@
+.list-cars-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.list-cars-title {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  color: #b91c1c; /* rojo oscuro */
+  margin-bottom: 24px;
+}
+
+.loading-text,
+.empty-text {
+  text-align: center;
+  font-size: 18px;
+  color: #6b7280; /* gris medio */
+}
+
+.cars-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (min-width: 640px) {
+  .cars-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

@@ -54,16 +54,6 @@ const carSchema =  new Schema({
     screen: {
         type: Boolean,
         require: true
-    },
-    idBranch: {
-        type: Schema.Types.ObjectId,
-        ref: "Branches",
-        require: true
-    },
-    idModel: {
-        type: Schema.Types.ObjectId,
-        ref: "Models",
-        require: true
     }
 }, {
     timestamps: true,

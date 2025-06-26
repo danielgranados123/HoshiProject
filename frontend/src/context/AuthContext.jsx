@@ -1,108 +1,161 @@
-import React from "react";
-import { createContext, useState, useEffect } from "react";
-const API = "http://localhost:4000/api";
-const AuthContext = createContext();
+import React, { createContext, useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import toast from "react-hot-toast";
+
+// Crear contexto
+const AuthContext = createContext(null);
+
+// Exportar contexto para uso en el hook useAuth
+export { AuthContext };
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [authCokie, setAuthCokie] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const API_URL = "http://localhost:4000/api";
 
-  const Login = async (email, password) => {
+  const navigate = useNavigate();
+
+  // Función para limpiar sesión
+  const clearSession = () => {
+    localStorage.removeItem("token");
+    Cookies.remove("authToken", { path: "/" });
+    setUser(null);
+    setAuthCokie(null);
+  };
+
+  // Logout con useCallback
+  const logout = useCallback(() => {
+    const logoutUser = async () => {
+      try {
+        await fetch(`${API_URL}/logout`, {
+          method: "POST",
+          credentials: "include",
+        });
+      } catch (error) {
+        console.error("Error durante el logout:", error);
+      } finally {
+        clearSession();
+        navigate("/");
+        toast.success("Sesión cerrada correctamente");
+      }
+    };
+    logoutUser();
+  }, [API_URL, navigate]);
+
+  // Función de login
+  const login = async (email, password) => {
     try {
-      const response = await fetch(`${API}/login`, {
+      const response = await fetch(`${API_URL}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
-        credentials: "include", // Importante para incluir cookies
+        credentials: "include",
       });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Error en la autenticación");
-      }
 
       const data = await response.json();
-      
-      // Guardar token en localStorage como respaldo
-      localStorage.setItem("authToken", data.token);
-      
-      // Guardar información básica del usuario
-      const userInfo = { email };
-      localStorage.setItem("user", JSON.stringify(userInfo));
-      
-      setAuthCokie(data.token);
-      setUser(userInfo);
 
-      return { success: true, message: data.message };
-    } catch (error) {
-      return { success: false, message: error.message };
-    }
-  };
+      if (response.ok) {
+        localStorage.setItem("token", data.token);
+        setAuthCokie(data.token);
 
-  const logout = async () => {
-    try {
-      // Llamar al endpoint de logout en el backend para limpiar la cookie
-      await fetch(`${API}/logout`, {
-        method: "POST",
-        credentials: "include", // Importante para incluir cookies en la petición
-      });
-    } catch (error) {
-      console.error("Error durante el logout:", error);
-    } finally {
-      // Limpiar datos locales independientemente de si la petición al servidor tuvo éxito
-      localStorage.removeItem("authToken");
-      localStorage.removeItem("user");
-      setAuthCokie(null);
-      setUser(null);
-    }
-  };
-
-  // En useEffect para restaurar la sesión y solo verificar servidor al inicio inicial
-  useEffect(() => {
-    // Primero, restauramos la sesión desde localStorage (comportamiento normal)
-    const token = localStorage.getItem("authToken");
-    const savedUser = localStorage.getItem("user");
-    if (token) {
-      setAuthCokie(token);
-      if (savedUser) {
-        setUser(JSON.parse(savedUser));
-      }
-    }
-
-    // Adicionalmente, verificamos si el servidor está disponible
-    // Pero solo usamos esto para limpiar la sesión si NO HAY conexión
-    const checkServer = async () => {
-      try {
-        // Solo hacemos una solicitud ping básica para ver si el servidor está disponible
-        await fetch(`${API}`, {
-          method: "HEAD",
-          credentials: "include",
-          // Importante: No esperamos respuesta correcta, solo que el servidor responda
+        const decodedPayload = JSON.parse(atob(data.token.split(".")[1]));
+        setUser({
+          id: decodedPayload.id,
+          userType: decodedPayload.userType,
         });
-        // Si llegamos aquí, el servidor está respondiendo, no hacemos nada
+
+        toast.success("Inicio de sesión exitoso");
+
+        // Redireccionar según el tipo de usuario
+        switch (decodedPayload.userType) {
+          case "admin":
+            navigate("/employees-private");
+            break;
+          case "employee":
+            navigate("/employees-private");
+            break;
+          case "customer":
+            navigate("/");
+            break;
+          default:
+            navigate("/");
+        }
+
+        return true;
+      } else {
+        toast.error(data.message || "Error al iniciar sesión");
+        return false;
+      }
+    } catch (error) {
+      console.error("Error en login:", error);
+      toast.error("Error de conexión con el servidor");
+      return false;
+    }
+  };
+
+  // Validar sesión en montaje
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const cookieToken = Cookies.get("authToken");
+
+        if (token || cookieToken) {
+          const response = await fetch(`${API_URL}/products`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token || cookieToken}`,
+            },
+            credentials: "include",
+          });
+
+          if (response.ok) {
+            try {
+              const tokenParts = (token || cookieToken).split(".");
+              if (tokenParts.length === 3) {
+                const payload = JSON.parse(atob(tokenParts[1]));
+                setUser({
+                  id: payload.id,
+                  userType: payload.userType,
+                });
+                setAuthCokie(token || cookieToken);
+              }
+            } catch (e) {
+              console.error("Error al decodificar token:", e);
+              clearSession();
+            }
+          } else {
+            clearSession();
+          }
+        } else {
+          clearSession();
+        }
       } catch (error) {
-        // SOLO si el servidor no está disponible, limpiamos la sesión
-        console.log("Servidor no disponible, cerrando sesión", error.message);
-        localStorage.removeItem("authToken");
-        localStorage.removeItem("user");
-        setAuthCokie(null);
-        setUser(null);
+        console.error("Error al validar sesión:", error);
+        clearSession();
+      } finally {
+        setLoading(false);
       }
     };
 
-    // Ejecutamos la verificación del servidor
-    checkServer();
-  }, []);
+    checkAuth();
+  }, [API_URL]);
 
   return (
     <AuthContext.Provider
-      value={{ user, Login, logout, authCokie, setAuthCokie, API }}
+      value={{
+        user,
+        authCokie,
+        loading,
+        login,
+        logout,
+        API: API_URL,
+      }}
     >
       {children}
     </AuthContext.Provider>
   );
 };
-
-// Export el contexto para poder usarlo en el hook
-export { AuthContext };
-

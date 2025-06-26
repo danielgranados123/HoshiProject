@@ -8,6 +8,7 @@ router.route("/")
 .post(employeesController.createEmployees) 
 
 router.route("/:id")
+.get(employeesController.getEmployee)
 .put(employeesController.updateEmployees)
 .delete(employeesController.deleteEmployees)
 

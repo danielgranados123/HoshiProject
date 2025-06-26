@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import './Login.css';
 import LoginI from "../../assets/login.svg";
 import { useNavigate } from 'react-router-dom';
@@ -11,25 +11,14 @@ const Login = () => {
   const [passwordError, setPasswordError] = useState(false);
   const navigate = useNavigate();
 
-  // Simulación simple de login sin contexto
-  const fakeLogin = async (email, password) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        if (email === "daniel@gmail.com" && password === "20200008") {
-          resolve({ success: true, user: { email, name: "Daniel" } });
-        } else {
-          resolve({ success: false, message: "Credenciales incorrectas" });
-        }
-      }, 1000);
-    });
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Reset errores visuales
     setEmailError(false);
     setPasswordError(false);
 
+    // Validación de campos vacíos
     if (!email || !password) {
       toast.error("Por favor, complete todos los campos.");
       if (!email) setEmailError(true);
@@ -37,30 +26,47 @@ const Login = () => {
       return;
     }
 
-    const result = await fakeLogin(email, password);
+    try {
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include", // Habilita cookies HTTP
+        body: JSON.stringify({ email, password }), // email puede ser también username
+      });
 
-    if (!result.success) {
-      toast.error(result.message || "Credenciales incorrectas.");
-      return;
+      const data = await res.json();
+
+      if (!res.ok || data.message !== "Inicio de sesión exitoso") {
+        throw new Error(data.message || "Credenciales incorrectas");
+      }
+
+      toast.success("Inicio de sesión exitoso");
+
+      // Redirige según el tipo de usuario
+      setTimeout(() => {
+        switch (data.userType) {
+          case "admin":
+            navigate("/employees-private");
+            break;
+          case "employee":
+            navigate("/employees-private");
+            break;
+          case "customer":
+            navigate("/");
+            break;
+          default:
+            navigate("/");
+        }
+      }, 800);
+    } catch (err) {
+      toast.error(err.message || "No se pudo iniciar sesión.");
     }
-
-    // Guardar token o info en localStorage
-    localStorage.setItem("authToken", "fakeToken123");
-    toast.success("Inicio de sesión exitoso.");
-    navigate("/Customers");
   };
-
-  useEffect(() => {
-    const authToken = localStorage.getItem("authToken");
-    if (authToken) {
-      navigate("/Customers");
-    }
-  }, [navigate]);
 
   return (
     <div className="login-container">
       <div className="image-section">
-        <img src={LoginI} alt="Car" className="login-image" />
+        <img src={LoginI} alt="Login visual" className="login-image" />
       </div>
 
       <div className="form-section">
@@ -69,7 +75,7 @@ const Login = () => {
 
         <form onSubmit={handleSubmit}>
           <label htmlFor="email">
-            <span className="bullet">●</span> Correo electrónico:
+            <span className="bullet">●</span> Correo o usuario:
             <input
               id="email"
               type="text"
@@ -101,6 +107,7 @@ const Login = () => {
             <a href="/register" className="btn-register">Registrarme</a>
           </p>
         </form>
+
         <Toaster toastOptions={{ duration: 2000 }} />
       </div>
     </div>

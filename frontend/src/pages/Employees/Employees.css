@@ -131,25 +131,20 @@
   overflow: hidden;
 }
 
-.employees-page .employees-header {
+.employees-page .employees-header,
+.employees-page .employee-item {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 2fr 2.5fr 1.5fr 1.2fr 1fr;
+  gap: 1rem;
   align-items: center;
-  font-weight: bold;
   padding: 1rem;
+}
+
+.employees-page .employees-header {
+  font-weight: bold;
   background-color: #e0e0e0;
   border-radius: 10px 10px 0 0;
   height: 60px;
-}
-
-.employees-page .employees-header span:nth-child(1) {
-  justify-self: start;
-  padding-left: 1.5rem;
-}
-
-.employees-page .employees-header span:nth-child(2) {
-  justify-self: end;
-  padding-right: 1rem;
 }
 
 .employees-page .employees-scroll {
@@ -174,11 +169,7 @@
 }
 
 .employees-page .employee-item {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
   background-color: #fff;
-  padding: 2%;
   margin-bottom: 6px;
   font-size: 15px;
   height: 80px;
@@ -199,12 +190,15 @@
   padding-right: 1rem;
   font-size: 1.5rem;
   cursor: pointer;
+  display: flex;
+  gap: 0.5rem;
 }
 
 @media (max-width: 769px) {
   .employees-page .hamburger {
     display: block;
   }
+
   .employees-page .sidebar {
     position: fixed;
     top: -100%;
@@ -215,15 +209,19 @@
     transition: top 0.3s ease;
     z-index: 1000;
   }
+
   .employees-page .sidebar.open {
     top: 0;
   }
+
   .employees-page .bottom-section {
     display: none;
   }
+
   .employees-page .logo-container {
     margin-top: 3rem;
   }
+
   .employees-page .sidebar.open nav {
     flex: 1;
     display: flex;
@@ -231,13 +229,16 @@
     justify-content: center;
     align-items: center;
   }
+
   .employees-page .sidebar.open nav ul li {
     margin: 1rem 0;
     font-size: 1.1rem;
   }
+
   .employees-page .employees-header {
     display: none;
   }
+
   .employees-page .employee-item {
     display: flex;
     flex-direction: column;
@@ -245,24 +246,30 @@
     padding: 1rem;
     height: auto;
   }
+
   .employees-page .employee-item:nth-child(even) {
     background-color: #f1f1f1;
   }
+
   .employees-page .employee-name::before {
     content: "Empleado: ";
     font-weight: bold;
   }
+
   .employees-page .employee-name,
   .employees-page .options {
     margin-bottom: 0.5rem;
   }
+
   .employees-page .options {
     align-self: flex-end;
     padding-left: 0;
   }
+
   .employees-page .search-add-container {
     width: 100%;
   }
+
   .employees-page .search-input {
     width: 100%;
   }

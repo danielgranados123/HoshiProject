@@ -8,10 +8,22 @@ employeesController.getEmployees = async (req, res) => {
     res.json(employee)
 };
 
+// UNO POR ID
+employeesController.getEmployee = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const employee = await employeesModel.findById(id);
+    if (!employee) return res.status(404).json({ message: "Empleado no encontrado" });
+    res.json(employee);
+  } catch (err) {
+    res.status(400).json({ message: "ID inválido" });
+  }
+};
+
 // INSERT
 employeesController.createEmployees = async (req, res) => {
     const { name, lastName, email, phone, role, salary,  } = req.body;
-    const newEmployee = new employeesModel({ name, lastName, email, phone, role, salary,  });
+    const newEmployee = new employeesModel({ name, lastName, email, phone, role, salary});
     await newEmployee.save()
     res.json({ message: "Employees saved"})
 };
@@ -31,8 +43,7 @@ employeesController.updateEmployees = async (req, res) => {
         email, 
         phone, 
         role, 
-        salary,
-        IdBranch
+        salary
     }, {new: true}
     );
 

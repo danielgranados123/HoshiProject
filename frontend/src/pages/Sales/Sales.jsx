@@ -34,33 +34,6 @@ const Sales = () => {
 
   return (
     <div className="container">
-      <aside className="sidebar">
-        <div className="logo-container">
-          <img src={Logo} alt="Logo" className="logo" />
-        </div>
-        <nav>
-          <ul>
-            <li><FaHome /> Inicio</li>
-            <li className="active"><FaShoppingCart /> Ventas</li>
-            <li><FaUser /> Clientes</li>
-            <li><FaBox /> Catálogo</li>
-            <li><FaUsersCog /> Empleados</li>
-          </ul>
-        </nav>
-        <div className="bottom-section">
-          <div className="greeting">
-            <p><strong>¡Buenos días, Bryan!</strong></p>
-            <p>Miércoles 26 de febrero</p>
-            <p className="time">9:45 a.m.</p>
-          </div>
-          <ul>
-            <li><FaCog /> Ajustes</li>
-            <li><FaSignOutAlt /> Salir</li>
-          </ul>
-          <p className="copyright">©2025–Hoshi</p>
-        </div>
-      </aside>
-
       <main className="main-content">
         <header className="header">
           <h1>Ventas</h1>

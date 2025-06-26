@@ -13,12 +13,20 @@ import reviewsRoutes from "./src/routes/reviews.js"
 import chatsRoutes from "./src/routes/chats.js"
 import loginRoutes from "./src/routes/login.js"
 import logoutRoutes from "./src/routes/logout.js"
+import registerEmployeesRoutes from "./src/routes/registerEmployees.js"
 
 // Creo una constante que es igual a la liberia que importé
 const app = express();
 
 // Que acepte datos de json
 app.use(express.json());
+
+import cors from 'cors';
+
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true,
+}));
 
 // Definir las rutas de las funciones que tendrà la pàgina web
 app.use("/api/branches", branchesRoutes)
@@ -34,6 +42,7 @@ app.use("/api/reviews", reviewsRoutes)
 app.use("/api/chats", chatsRoutes)
 app.use("/api/login", loginRoutes)
 app.use("/api/logout", logoutRoutes)
+app.use("/api/registerEmployees", registerEmployeesRoutes)
 
 
 

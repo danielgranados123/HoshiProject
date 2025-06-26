@@ -54,19 +54,25 @@ loginController.login = async (req, res) => {
     //// TOKEN
     //Para validar que inició sesión
     jsonwebtoken.sign(
-      //1-Que voy a guardar
-      { id: userFound._id, userType },
-      //2-Secreto
-      config.JWT.secret,
-      //3-Cuando expira
-      { expiresIn: config.JWT.expiresIn },
-      //4. Funcion flecha
-      (error, token) => {
-        if (error) console.log("error" + error);
-        res.cookie("authToken", token);
-        res.json({ message: "Login successful" });
-      }
-    );
+  { id: userFound._id, userType },
+  config.JWT.secret,
+  { expiresIn: config.JWT.expiresIn },
+  (error, token) => {
+    if (error) {
+      console.log("error" + error);
+      return res.status(500).json({ message: "Error generating token" });
+    }
+    res.cookie("authToken", token, {
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000,
+      path: '/',
+      sameSite: 'lax',
+      secure: process.env.NODE_ENV === 'production',
+    });
+
+    res.status(200).json({ message: "Login successful", userType, token });
+  }
+);
   } catch (error) {
     console.log("error" + error);
   }

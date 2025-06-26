@@ -34,52 +34,13 @@ export default function CustomersRegister() {
       >
         {menuOpen ? <FaTimes /> : <FaBars />}
       </button>
-
-      {/* Sidebar */}
-      <aside className={`sidebar ${menuOpen ? "open" : ""}`}>
-        <div className="logo-container">
-          <img src={Logo} alt="Logo" className="logo" />
-        </div>
-        <nav>
-          <ul>
-            <li onClick={() => navigate("/")}>
-              <FaHome /> Inicio
-            </li>
-            <li onClick={() => navigate("/Sales")}>
-              <FaShoppingCart /> Ventas
-            </li>
-            <li className="active">
-              <FaUser /> Clientes
-            </li>
-            <li onClick={() => navigate("/Catalog")}>
-              <FaBox /> Catálogo
-            </li>
-            <li onClick={()=> navigate("/Employees")}>
-              <FaUsersCog /> Empleados
-            </li>
-          </ul>
-        </nav>
-        <div className="bottom-section">
-          <div className="greeting">
-            <p><strong>¡Buenos días, Bryan!</strong></p>
-            <p>Miércoles 26 de febrero</p>
-            <p className="time">9:45 a.m.</p>
-          </div>
-          <ul>
-            <li><FaCog /> Ajustes</li>
-            <li><FaSignOutAlt /> Salir</li>
-          </ul>
-          <p className="copyright">©2025–Hoshi</p>
-        </div>
-      </aside>
-
       {/* Main content */}
       <main className="main-content register-content">
         {/* Header */}
         <header className="register-header">
           <button
             className="back-btn"
-            onClick={() => navigate("/customers")}
+            onClick={() => navigate("/customers-private")}
           >
             <FaArrowLeft />
           </button>
@@ -92,7 +53,7 @@ export default function CustomersRegister() {
         {/* Register Form */}
         <div className="register-grid">
           <CustomersRegisterForm
-            onSuccess={() => navigate("/customers")}
+            onSuccess={() => navigate("/customers-private")}
           />
         </div>
       </main>

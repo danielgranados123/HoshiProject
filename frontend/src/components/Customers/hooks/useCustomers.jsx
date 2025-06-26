@@ -1,9 +1,11 @@
 import { useState, useEffect, useCallback } from "react";
+import { toast } from "react-hot-toast";
+import Swal from "sweetalert2";
 
 export default function useCustomers() {
   const [customers, setCustomers] = useState([]);
-  const [loading, setLoading]   = useState(true);
-  const [error, setError]       = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const fetchCustomers = useCallback(async () => {
     setLoading(true);
@@ -22,19 +24,42 @@ export default function useCustomers() {
 
   const deleteCustomer = useCallback(
     async (id) => {
-      if (!window.confirm("¿Seguro que quieres eliminar este cliente?")) return;
+      const result = await Swal.fire({
+        title: "¿Estás seguro?",
+        text: "Esta acción no se puede deshacer",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Sí, eliminar",
+        cancelButtonText: "Cancelar",
+      });
+
+      if (!result.isConfirmed) return;
+
       try {
         const res = await fetch(`/api/customers/${id}`, { method: "DELETE" });
         if (!res.ok) throw new Error("Error al eliminar cliente");
         await fetchCustomers();
+
+        Swal.fire({
+          icon: "success",
+          title: "Cliente eliminado",
+          text: "El cliente fue eliminado correctamente",
+          timer: 2000,
+          showConfirmButton: false,
+        });
       } catch (err) {
         console.error(err);
-        alert(err.message || "No se pudo eliminar el cliente");
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: err.message || "No se pudo eliminar el cliente",
+        });
       }
     },
     [fetchCustomers]
   );
-
   useEffect(() => {
     fetchCustomers();
   }, [fetchCustomers]);

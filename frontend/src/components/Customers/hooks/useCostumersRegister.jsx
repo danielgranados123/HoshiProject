@@ -9,7 +9,7 @@ export default function useRegisterCustomer() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("/api/customers", {
+      const res = await fetch("/api/registerCustomers", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...customer, lastName: "" })

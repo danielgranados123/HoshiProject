@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import toast, {Toaster} from 'react-hot-toast';
+import toast from "react-hot-toast";
+import Swal from 'sweetalert2';
 
 const useDataEmployees = () => {
   const ApiRegister = "http://localhost:4000/api/registerEmployees";
@@ -8,7 +9,7 @@ const useDataEmployees = () => {
   const [activeTab, setActiveTab] = useState("list");
   const [id, setId] = useState("");
   const [name, setName] = useState("");
-  const [LastName, setLastName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
@@ -33,56 +34,85 @@ const useDataEmployees = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const nameRegex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
+    const phoneRegex = /^\d{8}$/;
+    const emailRegex = /^\S+@\S+\.\S+$/;
+
     if (
       !name ||
-      !LastName ||
+      !lastName ||
       !email ||
       !password ||
       !phone ||
       !role ||
-      !salary
+      salary === ""
     ) {
-      setError("Todos los campos son obligatorios");
       toast.error("Todos los campos son obligatorios");
       return;
     }
 
+    if (!nameRegex.test(name)) {
+      toast.error("El nombre solo debe contener letras");
+      return;
+    }
+
+    if (!nameRegex.test(lastName)) {
+      toast.error("El apellido solo debe contener letras");
+      return;
+    }
+
+    if (!emailRegex.test(email)) {
+      toast.error("El correo electrónico no es válido");
+      return;
+    }
+
+    if (!phoneRegex.test(phone)) {
+      toast.error("El teléfono debe tener exactamente 8 dígitos");
+      return;
+    }
+
+    if (isNaN(parseFloat(salary)) || parseFloat(salary) < 365) {
+      toast.error("El salario debe ser mayor o igual a $365");
+      return;
+    }
+
+    if (password.length < 6) {
+      toast.error("La contraseña debe tener al menos 6 caracteres");
+      return;
+    }
+
     try {
+      setLoading(true);
+
       const newEmployee = {
         name,
-        LastName,
+        lastName,
         email,
         password,
         phone,
         role,
-        salary,
+        salary: parseFloat(salary),
       };
 
-     console.log(newEmployee, "datos nuevo empleado");
-    
-          const response = await fetch(ApiRegister, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(newEmployee),
-          });
+      const response = await fetch(ApiRegister, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newEmployee),
+      });
 
-      if (!response.ok) {
+      if (!response.ok)
         throw new Error("Hubo un error al registrar el empleado");
-      }
 
-      const data = await response.json();
       toast.success("Empleado registrado");
-      setEmployees(data);
-      setSuccess("Empleado registrado correctamente");
       cleanData();
       fetchData();
+      
     } catch (error) {
+      toast.error("Ocurrió un error al registrar el empleado");
       setError(error.message);
       console.error("Error:", error);
-       alert("Error", "Ocurrió un error al registrar el empleado");
-      toast.error("Ocurrió un error al registrar el empleado");
     } finally {
       setLoading(false);
     }
@@ -91,11 +121,8 @@ const useDataEmployees = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(ApiEmployees);
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
+      if (!response.ok) throw new Error("Network response was not ok");
       const data = await response.json();
-      console.log(data)
       setEmployees(data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -108,23 +135,38 @@ const useDataEmployees = () => {
     fetchData();
   }, []);
 
-  const deleteEmployee = async (id) => {
-    try {
-      const response = await fetch(`${ApiEmployees}/${id}`, {
-        method: "DELETE",
-      });
+const deleteEmployee = async (id) => {
+  const result = await Swal.fire({
+    title: "¿Estás seguro?",
+    text: "Esta acción eliminará permanentemente al empleado.",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#d33",
+    cancelButtonColor: "#3085d6",
+    confirmButtonText: "Sí, eliminar",
+    cancelButtonText: "Cancelar"
+  });
 
-      if (!response.ok) {
-        throw new Error("Failed to delete employee");
-      }
+  if (!result.isConfirmed) {
+    Swal.fire("Cancelado", "No se eliminó al empleado.", "info");
+    return;
+  }
 
-      await response.json();
-      toast.success("Empleado eliminado");
-      fetchData();
-    } catch (error) {
-      console.error("Error deleting employee:", error);
-    }
-  };
+  try {
+    const response = await fetch(`${ApiEmployees}/${id}`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) throw new Error("Error al eliminar el empleado");
+
+    Swal.fire("¡Eliminado!", "El empleado ha sido eliminado.", "success");
+    fetchData();
+  } catch (error) {
+    console.error("Error deleting employee:", error);
+    Swal.fire("Error", "Ocurrió un error al eliminar el empleado.", "error");
+  }
+};
+
 
   const updateEmployee = (dataEmployee) => {
     setId(dataEmployee._id);
@@ -134,6 +176,7 @@ const useDataEmployees = () => {
     setPhone(dataEmployee.phone);
     setRole(dataEmployee.role);
     setSalary(dataEmployee.salary);
+    setPassword("");
     setError(null);
     setSuccess(null);
     setActiveTab("form");
@@ -142,16 +185,60 @@ const useDataEmployees = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
 
+    const nameRegex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
+    const phoneRegex = /^\d{8}$/;
+    const emailRegex = /^\S+@\S+\.\S+$/;
+
+    if (!name || !lastName || !email || !phone || !role || salary === "") {
+      toast.error("Todos los campos son obligatorios");
+      return;
+    }
+
+    if (!nameRegex.test(name)) {
+      toast.error("El nombre solo debe contener letras");
+      return;
+    }
+
+    if (!nameRegex.test(lastName)) {
+      toast.error("El apellido solo debe contener letras");
+      return;
+    }
+
+    if (!emailRegex.test(email)) {
+      toast.error("El correo electrónico no es válido");
+      return;
+    }
+
+    if (!phoneRegex.test(phone)) {
+      toast.error("El teléfono debe tener exactamente 8 dígitos");
+      return;
+    }
+
+    if (isNaN(parseFloat(salary)) || parseFloat(salary) < 365) {
+      toast.error("El salario debe ser mayor o igual a $365");
+      return;
+    }
+
+    if (password && password.length < 6) {
+      toast.error("La contraseña debe tener al menos 6 caracteres");
+      return;
+    }
+
     try {
+      setLoading(true);
+
       const updatedEmployee = {
         name,
-        LastName,
+        lastName,
         email,
-        password,
         phone,
         role,
-        salary,
+        salary: parseFloat(salary),
       };
+
+      if (password.trim() !== "") {
+        updatedEmployee.password = password;
+      }
 
       const response = await fetch(`${ApiEmployees}/${id}`, {
         method: "PUT",
@@ -161,19 +248,16 @@ const useDataEmployees = () => {
         body: JSON.stringify(updatedEmployee),
       });
 
-      if (!response.ok) {
-        throw new Error("Error al actualizar el empleado");
-      }
+      if (!response.ok) throw new Error("Error al actualizar el empleado");
 
       toast.success("Empleado actualizado");
-      setSuccess("Empleado actualizado correctamente");
       cleanData();
       setId("");
       setActiveTab("list");
       fetchData();
     } catch (error) {
-      setError(error.message);
       toast.error("Error al actualizar el empleado");
+      setError(error.message);
       console.error("Error:", error);
     } finally {
       setLoading(false);
@@ -184,10 +268,9 @@ const useDataEmployees = () => {
     activeTab,
     setActiveTab,
     id,
-    setId,
     name,
     setName,
-    LastName,
+    lastName,
     setLastName,
     email,
     setEmail,
@@ -206,7 +289,6 @@ const useDataEmployees = () => {
     loading,
     setLoading,
     employees,
-    setEmployees,
     cleanData,
     handleSubmit,
     fetchData,
